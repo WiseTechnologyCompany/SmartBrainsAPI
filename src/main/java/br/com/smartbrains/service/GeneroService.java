@@ -1,7 +1,7 @@
 package br.com.smartbrains.service;
 
 import br.com.smartbrains.domain.abstracts.AbstractService;
-import br.com.smartbrains.domain.messages.DeleteSucessResponseDTO;
+import br.com.smartbrains.domain.messages.DeleteResponseDTO;
 import br.com.smartbrains.model.dto.GeneroDTO;
 import br.com.smartbrains.model.entity.Genero;
 import br.com.smartbrains.repository.GeneroRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GeneroService extends AbstractService<GeneroDTO, DeleteSucessResponseDTO> {
+public class GeneroService extends AbstractService<GeneroDTO, DeleteResponseDTO> {
 
     @Autowired
     ModelMapper modelMapper;
@@ -45,9 +45,9 @@ public class GeneroService extends AbstractService<GeneroDTO, DeleteSucessRespon
     }
 
     @Override
-    public DeleteSucessResponseDTO delete(Integer pId) {
+    public DeleteResponseDTO delete(Integer pId) {
         var findGenero = generoRepository.getReferenceById(pId);
         generoRepository.delete(findGenero);
-        return DeleteSucessResponseDTO.deleteSucessResponseDTO;
+        return DeleteResponseDTO.deleteResponseDTO;
     }
 }

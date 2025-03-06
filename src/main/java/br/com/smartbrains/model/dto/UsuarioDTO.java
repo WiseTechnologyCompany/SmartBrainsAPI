@@ -1,5 +1,6 @@
 package br.com.smartbrains.model.dto;
 
+import br.com.smartbrains.model.entity.Usuarios;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -53,7 +54,7 @@ public class UsuarioDTO {
     private String telefone;
 
     @NotNull
-    private GeneroDTO generos;
+    private GeneroDTO genero;
 
     @NotNull
     private EstadoCivilDTO estadoCivil;
@@ -62,4 +63,20 @@ public class UsuarioDTO {
 
     private Date dataCadastro;
 
+    public UsuarioDTO(Usuarios usuarios) {
+        this.id = usuarios.getId();
+        this.nome = usuarios.getNome();
+        this.sobrenome = usuarios.getSobrenome();
+        this.email = usuarios.getEmail();
+        this.senha = usuarios.getSenha();
+        this.cpf = usuarios.getCpf();
+        this.profissao = usuarios.getProfissao();
+        this.empresa = usuarios.getEmpresa();
+        this.dataNascimento = usuarios.getDataNascimento();
+        this.telefone = usuarios.getTelefone();
+        this.genero = new GeneroDTO(usuarios.getGenero());
+        this.estadoCivil = new EstadoCivilDTO(usuarios.getEstadoCivil());
+        this.situacaoCadastro = new SituacaoCadastroDTO(usuarios.getSituacaoCadastro());
+        this.dataCadastro = usuarios.getDataCadastro();
+    }
 }

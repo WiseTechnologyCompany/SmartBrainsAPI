@@ -1,7 +1,7 @@
 package br.com.smartbrains.service;
 
 import br.com.smartbrains.domain.abstracts.AbstractService;
-import br.com.smartbrains.domain.messages.DeleteSucessResponseDTO;
+import br.com.smartbrains.domain.messages.DeleteResponseDTO;
 import br.com.smartbrains.model.dto.SituacaoCadastroDTO;
 import br.com.smartbrains.model.entity.SituacaoCadastro;
 import br.com.smartbrains.repository.SituacaoCadastroRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SituacaoCadastroService extends AbstractService<SituacaoCadastroDTO, DeleteSucessResponseDTO> {
+public class SituacaoCadastroService extends AbstractService<SituacaoCadastroDTO, DeleteResponseDTO> {
 
     @Autowired
     ModelMapper modelMapper;
@@ -45,9 +45,9 @@ public class SituacaoCadastroService extends AbstractService<SituacaoCadastroDTO
     }
 
     @Override
-    public DeleteSucessResponseDTO delete(Integer pId) {
+    public DeleteResponseDTO delete(Integer pId) {
         var situacaoCadastro = situacaoCadastroRepository.getReferenceById(pId);
         situacaoCadastroRepository.delete(situacaoCadastro);
-        return DeleteSucessResponseDTO.deleteSucessResponseDTO;
+        return DeleteResponseDTO.deleteResponseDTO;
     }
 }

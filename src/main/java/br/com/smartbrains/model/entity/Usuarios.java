@@ -66,18 +66,18 @@ public class Usuarios {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_genero", nullable = false)
-    private Genero id_genero;
+    private Genero genero;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_estadocivil", nullable = false)
-    private EstadoCivil id_estadoCivil;
+    private EstadoCivil estadoCivil;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_situacaocadastro", nullable = false)
-    private SituacaoCadastro id_situacaoCadastro;
+    private SituacaoCadastro situacaoCadastro;
 
-    @Column(name = "data_criacao")
-    private Date dataCriacao;
+    @Column(name = "data_cadastro")
+    private Date dataCadastro;
 
 }

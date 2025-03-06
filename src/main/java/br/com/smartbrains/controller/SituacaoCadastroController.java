@@ -1,6 +1,6 @@
 package br.com.smartbrains.controller;
 
-import br.com.smartbrains.domain.messages.DeleteSucessResponseDTO;
+import br.com.smartbrains.domain.messages.DeleteResponseDTO;
 import br.com.smartbrains.model.dto.SituacaoCadastroDTO;
 import br.com.smartbrains.service.SituacaoCadastroService;
 import jakarta.validation.Valid;
@@ -42,7 +42,7 @@ public class SituacaoCadastroController {
 
     @DeleteMapping("/v1/{id}")
     @Transactional
-    public ResponseEntity<DeleteSucessResponseDTO> deleteSituacaoCadastro(@PathVariable Integer id) {
+    public ResponseEntity<DeleteResponseDTO> deleteSituacaoCadastro(@PathVariable Integer id) {
         return ResponseEntity.ok(situacaoCadastroService.delete(id));
     }
 }
