@@ -1,5 +1,6 @@
 package br.com.smartbrains.model.dto;
 
+import br.com.smartbrains.model.entity.SituacaoCadastro;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,8 @@ public class SituacaoCadastroDTO {
     @Size(max = 50)
     private String descricao;
 
+    public SituacaoCadastroDTO(SituacaoCadastro situacaoCadastro) {
+        this.id = situacaoCadastro.getId();
+        this.descricao = situacaoCadastro.getDescricao();
+    }
 }
