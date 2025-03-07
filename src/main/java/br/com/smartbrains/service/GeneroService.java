@@ -27,27 +27,27 @@ public class GeneroService extends AbstractService<GeneroDTO, MessagesResponseDT
 
     @Override
     public GeneroDTO findById(Integer pId) {
-        var findGenero = generoRepository.getReferenceById(pId);
-        return new GeneroDTO(findGenero);
+        var genero = generoRepository.getReferenceById(pId);
+        return new GeneroDTO(genero);
     }
 
     @Override
     public GeneroDTO save(GeneroDTO pGeneroDTO) {
-        var generoToSave = modelMapper.map(pGeneroDTO, Genero.class);
-        return new GeneroDTO(generoRepository.save(generoToSave));
+        var genero = modelMapper.map(pGeneroDTO, Genero.class);
+        return new GeneroDTO(generoRepository.save(genero));
     }
 
     @Override
     public GeneroDTO update(Integer pId, GeneroDTO pGeneroDTO) {
-        var findGenero = generoRepository.getReferenceById(pId);
-        BeanUtils.copyProperties(pGeneroDTO, findGenero, "id");
-        return new GeneroDTO(generoRepository.save(findGenero));
+        var genero = generoRepository.getReferenceById(pId);
+        BeanUtils.copyProperties(pGeneroDTO, genero, "id");
+        return new GeneroDTO(generoRepository.save(genero));
     }
 
     @Override
     public MessagesResponseDTO delete(Integer pId) {
-        var findGenero = generoRepository.getReferenceById(pId);
-        generoRepository.delete(findGenero);
+        var genero = generoRepository.getReferenceById(pId);
+        generoRepository.delete(genero);
         return MessagesResponseDTO.deleteSucessResponseDTO;
     }
 }

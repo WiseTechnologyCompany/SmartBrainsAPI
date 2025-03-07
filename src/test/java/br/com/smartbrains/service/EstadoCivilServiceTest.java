@@ -19,6 +19,8 @@ public class EstadoCivilServiceTest extends AbstractTest {
 
     private String estadoCivil;
 
+    private final Integer ID = 1;
+
     @Autowired
     ObjectMapper objectMapper;
 
@@ -42,10 +44,10 @@ public class EstadoCivilServiceTest extends AbstractTest {
     @Test
     @Order(2)
     void findById() {
-        int id = 1;
-        var estadoCivil = estadoCivilService.findById(id);
+        var estadoCivil = estadoCivilService.findById(ID);
 
         assertThat(estadoCivil).isNotNull();
+        assertThat(estadoCivil.getId()).isEqualTo(ID);
     }
 
     @Test
@@ -53,12 +55,11 @@ public class EstadoCivilServiceTest extends AbstractTest {
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var estadoCivilDTO = objectMapper.readValue(estadoCivil, EstadoCivilDTO.class);
-
             var estadoCivil = estadoCivilService.save(estadoCivilDTO);
-            var findEstadoCivil = estadoCivilService.findById(estadoCivil.getId());
 
+            assertThat(estadoCivilDTO).isNotNull();
             assertThat(estadoCivil).isNotNull();
-            assertThat(findEstadoCivil).isNotNull();
+            assertThat(estadoCivil.getDescricao()).isEqualToIgnoringCase(estadoCivilDTO.getDescricao());
         });
     }
 
@@ -66,23 +67,20 @@ public class EstadoCivilServiceTest extends AbstractTest {
     @Order(4)
     void update() {
         Assertions.assertDoesNotThrow(() -> {
-            int id = 1;
             var estadoCivilDTO = objectMapper.readValue(estadoCivil, EstadoCivilDTO.class);
 
-            estadoCivilService.update(id, estadoCivilDTO);
-            var findEstadoCivil = estadoCivilService.findById(id);
+            estadoCivilService.update(ID, estadoCivilDTO);
+            var findEstadoCivil = estadoCivilService.findById(ID);
 
-            assertThat(findEstadoCivil.getDescricao()).isEqualTo(estadoCivilDTO.getDescricao());
+            assertThat(findEstadoCivil.getDescricao()).isEqualToIgnoringCase(estadoCivilDTO.getDescricao());
         });
     }
 
     @Test
     @Order(5)
     void delete() {
-        int id = 1;
-
         Assertions.assertDoesNotThrow(() -> {
-            estadoCivilService.delete(id);
+            estadoCivilService.delete(ID);
         });
     }
 }

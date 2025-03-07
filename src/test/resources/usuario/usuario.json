@@ -1,0 +1,13 @@
+{
+  "nome": "TESTE",
+  "sobrenome": "TESTE",
+  "email": "teste@email.com",
+  "senha": "senha123",
+  "cpf": "000.000.000-00",
+  "profissao": "TESTE",
+  "empresa": "TESTE",
+  "dataNascimento": "01/01/2001",
+  "telefone": "(00) 00000-0000",
+  "genero": 1,
+  "estadoCivil": 3
+}

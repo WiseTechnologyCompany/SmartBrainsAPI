@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -49,7 +49,7 @@ public class UsuarioDTO {
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @NotNull
     @Size(max = 20)
@@ -64,7 +64,7 @@ public class UsuarioDTO {
     private String situacaoCadastro;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dataCadastro;
+    private LocalDate dataCadastro;
 
     public UsuarioDTO(Usuarios usuarios) {
         this.id = usuarios.getId();

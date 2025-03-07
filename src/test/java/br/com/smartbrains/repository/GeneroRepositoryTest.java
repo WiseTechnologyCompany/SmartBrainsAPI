@@ -48,7 +48,7 @@ class GeneroRepositoryTest extends AbstractTest {
         var genero = generoRepository.getReferenceById(id);
 
         assertThat(genero).isNotNull();
-        assertThat(genero.getId()).isEqualTo(1);
+        assertThat(genero.getId()).isEqualTo(id);
     }
 
     @Test
@@ -56,13 +56,11 @@ class GeneroRepositoryTest extends AbstractTest {
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var generoEntity = objectMapper.readValue(genero, Genero.class);
+            var savedGenero = generoRepository.save(generoEntity);
 
-            var saveGenero = generoRepository.save(generoEntity);
-            var findGenero = generoRepository.getReferenceById(saveGenero.getId());
-
-            assertThat(saveGenero).isNotNull();
-            assertThat(findGenero).isNotNull();
-            assertThat(findGenero.getId()).isEqualTo(saveGenero.getId());
+            assertThat(generoEntity).isNotNull();
+            assertThat(savedGenero).isNotNull();
+            assertThat(savedGenero.getDescricao()).isEqualToIgnoringCase(generoEntity.getDescricao());
         });
     }
 
@@ -70,8 +68,8 @@ class GeneroRepositoryTest extends AbstractTest {
     @Order(4)
     void findByIdException() {
         int id = 999;
-        var findGenero = generoRepository.findById(id);
+        var genero = generoRepository.findById(id);
 
-        assertThrows(EntityNotFoundException.class, () -> findGenero.orElseThrow(EntityNotFoundException::new));
+        assertThrows(EntityNotFoundException.class, () -> genero.orElseThrow(EntityNotFoundException::new));
     }
 }

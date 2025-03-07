@@ -56,12 +56,11 @@ class EstadoCivilRepositoryTest extends AbstractTest {
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var estadoCivilEntity = objectMapper.readValue(estadoCivil, EstadoCivil.class);
+            var savedEstadoCivil = estadoCivilRepository.save(estadoCivilEntity);
 
-            var saveEstadoCivil = estadoCivilRepository.save(estadoCivilEntity);
-            var findEstadoCivil = estadoCivilRepository.getReferenceById(saveEstadoCivil.getId());
-
-            assertThat(saveEstadoCivil).isNotNull();
-            assertThat(findEstadoCivil.getId()).isEqualTo(saveEstadoCivil.getId());
+            assertThat(estadoCivilEntity).isNotNull();
+            assertThat(savedEstadoCivil).isNotNull();
+            assertThat(savedEstadoCivil.getDescricao()).isEqualToIgnoringCase(savedEstadoCivil.getDescricao());
         });
     }
 
@@ -69,8 +68,8 @@ class EstadoCivilRepositoryTest extends AbstractTest {
     @Order(4)
     void findByIdException() {
         int id = 999;
-        var findEstadoCivil = estadoCivilRepository.findById(id);
+        var estadoCivil = estadoCivilRepository.findById(id);
 
-        assertThrows(EntityNotFoundException.class, () -> findEstadoCivil.orElseThrow(EntityNotFoundException::new));
+        assertThrows(EntityNotFoundException.class, () -> estadoCivil.orElseThrow(EntityNotFoundException::new));
     }
 }

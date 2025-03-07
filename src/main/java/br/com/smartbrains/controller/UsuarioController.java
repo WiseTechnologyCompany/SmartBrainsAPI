@@ -3,7 +3,7 @@ package br.com.smartbrains.controller;
 import br.com.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.smartbrains.domain.page.PageDTO;
 import br.com.smartbrains.model.dto.UsuarioDTO;
-import br.com.smartbrains.model.dto.create.ModifyUsuarioDTO;
+import br.com.smartbrains.model.modify.dto.ModifyUsuarioDTO;
 import br.com.smartbrains.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +34,17 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity<MessagesResponseDTO> saveUsuario(@RequestBody @Valid ModifyUsuarioDTO modifyUsuarioDTO) {
         return ResponseEntity.status(201).body(usuarioService.save(modifyUsuarioDTO));
+    }
+
+    @PatchMapping("/v1/{id}")
+    @Transactional
+    public ResponseEntity<ModifyUsuarioDTO> updateUsuario(@PathVariable Integer id, @RequestBody @Valid ModifyUsuarioDTO modifyUsuarioDTO) {
+        return ResponseEntity.ok(usuarioService.update(id, modifyUsuarioDTO));
+    }
+
+    @DeleteMapping("/v1/{id}")
+    @Transactional
+    public ResponseEntity<MessagesResponseDTO> deleteUsuario(@PathVariable Integer id) {
+        return ResponseEntity.ok(usuarioService.delete(id));
     }
 }

@@ -2,6 +2,7 @@ package br.com.smartbrains.model.modify.dto;
 
 import br.com.smartbrains.model.modify.entity.ModifyUsuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,13 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUsuarioDTO {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ModifyUsuarioDTO {
 
     @NotNull
     @Size(max = 100)
@@ -47,7 +49,7 @@ public class CreateUsuarioDTO {
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @NotNull
     @Size(max = 20)
@@ -59,17 +61,17 @@ public class CreateUsuarioDTO {
     @NotNull
     private Integer estadoCivil;
 
-    public CreateUsuarioDTO(ModifyUsuario createUsuario) {
-        this.nome = createUsuario.getNome();
-        this.sobrenome = createUsuario.getSobrenome();
-        this.email = createUsuario.getEmail();
-        this.senha = createUsuario.getSenha();
-        this.cpf = createUsuario.getCpf();
-        this.profissao = createUsuario.getProfissao();
-        this.empresa = createUsuario.getEmpresa();
-        this.dataNascimento = createUsuario.getDataNascimento();
-        this.telefone = createUsuario.getTelefone();
-        this.genero = createUsuario.getGenero();
-        this.estadoCivil = createUsuario.getEstadoCivil();
+    public ModifyUsuarioDTO(ModifyUsuario modifyUsuario) {
+        this.nome = modifyUsuario.getNome();
+        this.sobrenome = modifyUsuario.getSobrenome();
+        this.email = modifyUsuario.getEmail();
+        this.senha = modifyUsuario.getSenha();
+        this.cpf = modifyUsuario.getCpf();
+        this.profissao = modifyUsuario.getProfissao();
+        this.empresa = modifyUsuario.getEmpresa();
+        this.dataNascimento = modifyUsuario.getDataNascimento();
+        this.telefone = modifyUsuario.getTelefone();
+        this.genero = modifyUsuario.getGenero();
+        this.estadoCivil = modifyUsuario.getEstadoCivil();
     }
 }

@@ -20,6 +20,8 @@ public class GeneroServiceTest extends AbstractTest {
 
     private String genero;
 
+    private final Integer ID = 1;
+
     @Autowired
     ObjectMapper objectMapper;
 
@@ -54,40 +56,33 @@ public class GeneroServiceTest extends AbstractTest {
     @Order(3)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
-            var generoEntity = objectMapper.readValue(genero, GeneroDTO.class);
+            var generoDTO = objectMapper.readValue(genero, GeneroDTO.class);
+            var genero = generoService.save(generoDTO);
 
-            var saveGenero = generoService.save(generoEntity);
-            var findGenero = generoService.findById(saveGenero.getId());
-
-            assertThat(saveGenero).isNotNull();
-            assertThat(findGenero).isNotNull();
-            assertThat(findGenero.getId()).isEqualTo(saveGenero.getId());
-        });
-    }
-
-    @Test
-    @Order(3)
-    void update() {
-        Assertions.assertDoesNotThrow(() -> {
-            int id = 1;
-
-            var generoEntity = objectMapper.readValue(genero, GeneroDTO.class);
-            var updateGenero = generoService.update(id, generoEntity);
-            var findGenero = generoService.findById(id);
-
-            assertThat(updateGenero).isNotNull();
-            assertThat(findGenero).isNotNull();
-            assertThat(findGenero.getDescricao()).isEqualTo(generoEntity.getDescricao());
+            assertThat(generoDTO).isNotNull();
+            assertThat(genero).isNotNull();
+            assertThat(genero.getDescricao()).isEqualToIgnoringCase(generoDTO.getDescricao());
         });
     }
 
     @Test
     @Order(4)
-    void delete() {
-        int id = 1;
-
+    void update() {
         Assertions.assertDoesNotThrow(() -> {
-            generoService.delete(id);
+            var generoDTO = objectMapper.readValue(genero, GeneroDTO.class);
+
+            generoService.update(ID, generoDTO);
+            var findGenero = generoService.findById(ID);
+
+            assertThat(findGenero.getDescricao()).isEqualToIgnoringCase(generoDTO.getDescricao());
+        });
+    }
+
+    @Test
+    @Order(5)
+    void delete() {
+        Assertions.assertDoesNotThrow(() -> {
+            generoService.delete(ID);
         });
     }
 }

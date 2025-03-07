@@ -13,7 +13,7 @@ public abstract class AbstractSpecificService<T, S, M> {
 
     public abstract M save(S Object);
 
-    public abstract T update(Integer pId, T Object);
+    public abstract S update(Integer pId, S Object);
 
     public abstract M delete(Integer pId);
 

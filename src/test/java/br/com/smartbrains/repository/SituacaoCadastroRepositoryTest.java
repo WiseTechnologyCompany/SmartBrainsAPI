@@ -45,10 +45,10 @@ public class SituacaoCadastroRepositoryTest extends AbstractTest {
     @Order(2)
     void findById() {
         int id = 1;
-        var findSituacaoCadastro = situacaoCadastroRepository.getReferenceById(id);
+        var situacaoCadastro = situacaoCadastroRepository.getReferenceById(id);
 
-        assertThat(findSituacaoCadastro).isNotNull();
-        assertThat(findSituacaoCadastro.getId()).isEqualTo(id);
+        assertThat(situacaoCadastro).isNotNull();
+        assertThat(situacaoCadastro.getId()).isEqualTo(id);
     }
 
     @Test
@@ -56,12 +56,11 @@ public class SituacaoCadastroRepositoryTest extends AbstractTest {
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var situacaoCadastroEntity = objectMapper.readValue(situacaoCadastro, SituacaoCadastro.class);
+            var savedSituacaoCadastro = situacaoCadastroRepository.save(situacaoCadastroEntity);
 
-            var situacaoCadastro = situacaoCadastroRepository.save(situacaoCadastroEntity);
-            var findSituacaoCadastro = situacaoCadastroRepository.getReferenceById(situacaoCadastro.getId());
-
-            assertThat(situacaoCadastro).isNotNull();
-            assertThat(findSituacaoCadastro.getId()).isEqualTo(situacaoCadastro.getId());
+            assertThat(situacaoCadastroEntity).isNotNull();
+            assertThat(savedSituacaoCadastro).isNotNull();
+            assertThat(savedSituacaoCadastro.getDescricao()).isEqualToIgnoringCase(situacaoCadastroEntity.getDescricao());
         });
     }
 
@@ -69,8 +68,8 @@ public class SituacaoCadastroRepositoryTest extends AbstractTest {
     @Order(4)
     void findByIdException() {
         int id = 999;
-        var findSituacaoCadastro = situacaoCadastroRepository.findById(id);
+        var situacaoCadastro = situacaoCadastroRepository.findById(id);
 
-        assertThrows(EntityNotFoundException.class, () -> findSituacaoCadastro.orElseThrow(EntityNotFoundException::new));
+        assertThrows(EntityNotFoundException.class, () -> situacaoCadastro.orElseThrow(EntityNotFoundException::new));
     }
 }

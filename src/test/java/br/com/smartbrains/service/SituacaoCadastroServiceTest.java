@@ -17,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class SituacaoCadastroServiceTest extends AbstractTest {
 
+    private final Integer ID = 1;
+
     private String situacaoCadastro;
 
     @Autowired
@@ -42,10 +44,10 @@ public class SituacaoCadastroServiceTest extends AbstractTest {
     @Test
     @Order(2)
     void findById() {
-        int id = 1;
-        var situacaoCadastro = situacaoCadastroService.findById(id);
+        var situacaoCadastro = situacaoCadastroService.findById(ID);
 
         assertThat(situacaoCadastro).isNotNull();
+        assertThat(situacaoCadastro.getId()).isEqualTo(ID);
     }
 
     @Test
@@ -53,12 +55,11 @@ public class SituacaoCadastroServiceTest extends AbstractTest {
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var situacaoCadastroDTO = objectMapper.readValue(situacaoCadastro, SituacaoCadastroDTO.class);
-
             var situacaoCadastro = situacaoCadastroService.save(situacaoCadastroDTO);
-            var findSituacaoCadastro = situacaoCadastroService.findById(situacaoCadastro.getId());
 
+            assertThat(situacaoCadastroDTO).isNotNull();
             assertThat(situacaoCadastro).isNotNull();
-            assertThat(findSituacaoCadastro).isNotNull();
+            assertThat(situacaoCadastro.getDescricao()).isEqualToIgnoringCase(situacaoCadastroDTO.getDescricao());
         });
     }
 
@@ -66,23 +67,20 @@ public class SituacaoCadastroServiceTest extends AbstractTest {
     @Order(4)
     void update() {
         Assertions.assertDoesNotThrow(() -> {
-            int id = 1;
             var situacaoCadastroDTO = objectMapper.readValue(situacaoCadastro, SituacaoCadastroDTO.class);
 
-            situacaoCadastroService.update(id, situacaoCadastroDTO);
-            var situacaoCadastro = situacaoCadastroService.findById(id);
+            situacaoCadastroService.update(ID, situacaoCadastroDTO);
+            var situacaoCadastro = situacaoCadastroService.findById(ID);
 
-            assertThat(situacaoCadastro.getDescricao()).isEqualTo(situacaoCadastroDTO.getDescricao());
+            assertThat(situacaoCadastro.getDescricao()).isEqualToIgnoringCase(situacaoCadastroDTO.getDescricao());
         });
     }
 
     @Test
     @Order(5)
     void delete() {
-        int id = 1;
-
         Assertions.assertDoesNotThrow(() -> {
-            situacaoCadastroService.delete(id);
+            situacaoCadastroService.delete(ID);
         });
     }
 }

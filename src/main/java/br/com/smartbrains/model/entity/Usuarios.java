@@ -1,12 +1,13 @@
 package br.com.smartbrains.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -56,7 +57,8 @@ public class Usuarios {
 
     @NotNull
     @Column(name = "data_nascimento", nullable = false)
-    private Date dataNascimento;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate dataNascimento;
 
     @NotNull
     @Size(max = 20)
@@ -78,6 +80,6 @@ public class Usuarios {
     private SituacaoCadastro situacaoCadastro;
 
     @Column(name = "data_cadastro")
-    private Date dataCadastro;
+    private LocalDate dataCadastro;
 
 }
