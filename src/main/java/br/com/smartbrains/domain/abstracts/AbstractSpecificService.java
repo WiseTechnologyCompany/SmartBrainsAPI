@@ -11,7 +11,7 @@ public abstract class AbstractSpecificService<T, S, M> {
 
     public abstract T findById(Integer pId);
 
-    public abstract T save(S Object);
+    public abstract M save(S Object);
 
     public abstract T update(Integer pId, T Object);
 

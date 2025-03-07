@@ -1,5 +1,6 @@
-package br.com.smartbrains.model.dto.create;
+package br.com.smartbrains.model.modify.dto;
 
+import br.com.smartbrains.model.modify.entity.ModifyUsuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -58,4 +59,17 @@ public class CreateUsuarioDTO {
     @NotNull
     private Integer estadoCivil;
 
+    public CreateUsuarioDTO(ModifyUsuario createUsuario) {
+        this.nome = createUsuario.getNome();
+        this.sobrenome = createUsuario.getSobrenome();
+        this.email = createUsuario.getEmail();
+        this.senha = createUsuario.getSenha();
+        this.cpf = createUsuario.getCpf();
+        this.profissao = createUsuario.getProfissao();
+        this.empresa = createUsuario.getEmpresa();
+        this.dataNascimento = createUsuario.getDataNascimento();
+        this.telefone = createUsuario.getTelefone();
+        this.genero = createUsuario.getGenero();
+        this.estadoCivil = createUsuario.getEstadoCivil();
+    }
 }

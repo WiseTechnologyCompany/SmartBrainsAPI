@@ -56,12 +56,12 @@ public class UsuarioDTO {
     private String telefone;
 
     @NotNull
-    private GeneroDTO genero;
+    private String genero;
 
     @NotNull
-    private EstadoCivilDTO estadoCivil;
+    private String estadoCivil;
 
-    private SituacaoCadastroDTO situacaoCadastro;
+    private String situacaoCadastro;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataCadastro;
@@ -77,9 +77,9 @@ public class UsuarioDTO {
         this.empresa = usuarios.getEmpresa();
         this.dataNascimento = usuarios.getDataNascimento();
         this.telefone = usuarios.getTelefone();
-        this.genero = new GeneroDTO(usuarios.getGenero());
-        this.estadoCivil = new EstadoCivilDTO(usuarios.getEstadoCivil());
-        this.situacaoCadastro = new SituacaoCadastroDTO(usuarios.getSituacaoCadastro());
+        this.genero = usuarios.getGenero().getDescricao();
+        this.estadoCivil = usuarios.getEstadoCivil().getDescricao();
+        this.situacaoCadastro = usuarios.getSituacaoCadastro().getDescricao();
         this.dataCadastro = usuarios.getDataCadastro();
     }
 }

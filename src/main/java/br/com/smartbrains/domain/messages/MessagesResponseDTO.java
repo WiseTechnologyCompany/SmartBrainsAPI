@@ -7,26 +7,31 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class DeleteResponseDTO {
+public class MessagesResponseDTO {
 
     private Integer status;
     private String message;
     private String details;
-    private String exception;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm:ss")
     private LocalDateTime timestamp;
 
-    public DeleteResponseDTO(Integer status, String message, String details) {
+    public MessagesResponseDTO(Integer status, String message, String details) {
         this.status = status;
         this.message = message;
         this.details = details;
         this.timestamp = LocalDateTime.now();
     }
 
-    public static DeleteResponseDTO deleteResponseDTO = new DeleteResponseDTO(
+    public static MessagesResponseDTO createSucessResponseDTO = new MessagesResponseDTO(
+            201,
+            "Sucesso",
+            "O Registro foi salvo com sucesso!"
+    );
+
+    public static MessagesResponseDTO deleteSucessResponseDTO = new MessagesResponseDTO(
             200,
             "Sucesso",
-            "O Registro informado foi deletado com sucesso!"
+            "O Registro solicitado foi deletado com sucesso!"
     );
 }

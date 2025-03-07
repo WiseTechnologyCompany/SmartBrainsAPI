@@ -1,17 +1,12 @@
 package br.com.smartbrains.service;
 
 import br.com.smartbrains.domain.abstracts.AbstractSpecificService;
-import br.com.smartbrains.domain.messages.DeleteResponseDTO;
-import br.com.smartbrains.enums.EstadoCivil;
-import br.com.smartbrains.enums.Genero;
+import br.com.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.smartbrains.enums.SituacaoCadastro;
-import br.com.smartbrains.model.dto.EstadoCivilDTO;
-import br.com.smartbrains.model.dto.GeneroDTO;
+import br.com.smartbrains.model.modify.entity.ModifyUsuario;
 import br.com.smartbrains.model.dto.UsuarioDTO;
-import br.com.smartbrains.model.dto.create.CreateUsuarioDTO;
-import br.com.smartbrains.model.entity.Usuarios;
-import br.com.smartbrains.repository.EstadoCivilRepository;
-import br.com.smartbrains.repository.GeneroRepository;
+import br.com.smartbrains.model.dto.create.ModifyUsuarioDTO;
+import br.com.smartbrains.repository.ModifyUsuarioRepository;
 import br.com.smartbrains.repository.SituacaoCadastroRepository;
 import br.com.smartbrains.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -19,22 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import java.util.Map;
 
 @Service
-public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUsuarioDTO, DeleteResponseDTO> {
+public class UsuarioService extends AbstractSpecificService<UsuarioDTO, ModifyUsuarioDTO, MessagesResponseDTO> {
 
     @Autowired
     ModelMapper modelMapper;
 
     @Autowired
-    GeneroRepository generoRepository;
-
-    @Autowired
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    EstadoCivilRepository estadoCivilRepository;
+    ModifyUsuarioRepository modifyUsuarioRepository;
 
     @Autowired
     SituacaoCadastroRepository situacaoCadastroRepository;
@@ -50,12 +41,10 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
     }
 
     @Override
-    public UsuarioDTO save(CreateUsuarioDTO pCreateUsuarioDTO) {
-       var usuarioDTO = modelMapper.map(pCreateUsuarioDTO, UsuarioDTO.class);
-       var generoDTO = verificarGeneroUsuario(usuarioDTO);
-       var estadoCivilDTO = verificarEstadoCivilUsuario(generoDTO);
-       var usuario = modelMapper.map(estadoCivilDTO, Usuarios.class);
-       return new UsuarioDTO(usuarioRepository.save(usuario));
+    public MessagesResponseDTO save(ModifyUsuarioDTO pModifyUsuarioDTO) {
+        var usuario = modelMapper.map(pModifyUsuarioDTO, ModifyUsuario.class);
+        modifyUsuarioRepository.save(usuario);
+        return MessagesResponseDTO.createSucessResponseDTO;
     }
 
     @Override
@@ -64,32 +53,18 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
     }
 
     @Override
-    public DeleteResponseDTO delete(Integer pId) {
-        var usuario = usuarioRepository.getReferenceById(pId);
-
-        if (usuario.getSituacaoCadastro().getId().equals(SituacaoCadastro.ATIVO.getId())) {
+    public MessagesResponseDTO delete(Integer pId) {
+        try {
+            var usuario = usuarioRepository.getReferenceById(pId);
             var situacaoExcluido = situacaoCadastroRepository.getReferenceById(SituacaoCadastro.EXCLUIDO.getId());
+
             usuario.setSituacaoCadastro(situacaoExcluido);
 
             new UsuarioDTO(usuarioRepository.save(usuario));
-            return DeleteResponseDTO.deleteResponseDTO;
+            return MessagesResponseDTO.deleteSucessResponseDTO;
         }
-        else {
-            throw new RuntimeException();
+        catch (RuntimeException ex) {
+            throw new RuntimeException(ex);
         }
-    }
-
-    private UsuarioDTO verificarGeneroUsuario(UsuarioDTO pUsuarioDTO) {
-        var genero = generoRepository.getReferenceById(pUsuarioDTO.getGenero().getId());
-        var generoDTO = modelMapper.map(genero, GeneroDTO.class);
-        pUsuarioDTO.setGenero(generoDTO);
-        return pUsuarioDTO;
-    }
-
-    private UsuarioDTO verificarEstadoCivilUsuario(UsuarioDTO pUsuarioDTO) {
-        var estadoCivil = estadoCivilRepository.getReferenceById(pUsuarioDTO.getEstadoCivil().getId());
-        var estadoCivilDTO = modelMapper.map(estadoCivil, EstadoCivilDTO.class);
-        pUsuarioDTO.setEstadoCivil(estadoCivilDTO);
-        return pUsuarioDTO;
     }
 }

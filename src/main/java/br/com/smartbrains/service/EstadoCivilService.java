@@ -1,7 +1,7 @@
 package br.com.smartbrains.service;
 
 import br.com.smartbrains.domain.abstracts.AbstractService;
-import br.com.smartbrains.domain.messages.DeleteResponseDTO;
+import br.com.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.smartbrains.model.dto.EstadoCivilDTO;
 import br.com.smartbrains.model.entity.EstadoCivil;
 import br.com.smartbrains.repository.EstadoCivilRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EstadoCivilService extends AbstractService<EstadoCivilDTO, DeleteResponseDTO> {
+public class EstadoCivilService extends AbstractService<EstadoCivilDTO, MessagesResponseDTO> {
 
     @Autowired
     ModelMapper modelMapper;
@@ -45,9 +45,9 @@ public class EstadoCivilService extends AbstractService<EstadoCivilDTO, DeleteRe
     }
 
     @Override
-    public DeleteResponseDTO delete(Integer pId) {
+    public MessagesResponseDTO delete(Integer pId) {
         var findEstadoCivil = estadoCivilRepository.getReferenceById(pId);
         estadoCivilRepository.delete(findEstadoCivil);
-        return DeleteResponseDTO.deleteResponseDTO;
+        return MessagesResponseDTO.deleteSucessResponseDTO;
     }
 }
