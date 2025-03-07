@@ -1,6 +1,7 @@
 package br.com.smartbrains.model.dto;
 
 import br.com.smartbrains.model.entity.Usuarios;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -47,6 +48,7 @@ public class UsuarioDTO {
     private String empresa;
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataNascimento;
 
     @NotNull
@@ -61,6 +63,7 @@ public class UsuarioDTO {
 
     private SituacaoCadastroDTO situacaoCadastro;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataCadastro;
 
     public UsuarioDTO(Usuarios usuarios) {
