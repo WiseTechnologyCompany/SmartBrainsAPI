@@ -25,7 +25,7 @@ public class EntityNotFoundDTO {
         this.timestamp = LocalDateTime.now();
     }
 
-    public static EntityNotFoundDTO entityNotFoundDTO = new EntityNotFoundDTO(
+    public static final EntityNotFoundDTO entityNotFoundDTO = new EntityNotFoundDTO(
             404,
             "Not Found",
             "Registro não encontrado!",

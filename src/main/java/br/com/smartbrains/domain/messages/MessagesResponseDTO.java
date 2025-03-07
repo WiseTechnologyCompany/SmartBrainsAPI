@@ -23,13 +23,13 @@ public class MessagesResponseDTO {
         this.timestamp = LocalDateTime.now();
     }
 
-    public static MessagesResponseDTO createSucessResponseDTO = new MessagesResponseDTO(
+    public static final MessagesResponseDTO createSucessResponseDTO = new MessagesResponseDTO(
             201,
             "Sucesso",
             "O Registro foi salvo com sucesso!"
     );
 
-    public static MessagesResponseDTO deleteSucessResponseDTO = new MessagesResponseDTO(
+    public static final MessagesResponseDTO deleteSucessResponseDTO = new MessagesResponseDTO(
             200,
             "Sucesso",
             "O Registro solicitado foi deletado com sucesso!"
