@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/situacaocadastro")
+@RequestMapping("/v1/situacaocadastro")
 public class SituacaoCadastroController {
 
     @Autowired
     SituacaoCadastroService situacaoCadastroService;
 
-    @GetMapping("/v1")
+    @GetMapping
     public ResponseEntity<List<SituacaoCadastroDTO>> getAll() {
         return ResponseEntity.ok(situacaoCadastroService.findAll());
     }
 
-    @GetMapping("/v1/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SituacaoCadastroDTO> findSituacaoCadastroById(@PathVariable Integer id) {
         return ResponseEntity.ok(situacaoCadastroService.findById(id));
     }
 
-    @PostMapping("/v1")
+    @PostMapping
     @Transactional
     public ResponseEntity<SituacaoCadastroDTO> saveSituacaoCadastro(@RequestBody @Valid SituacaoCadastroDTO pSituacaoCadastroDTO) {
         return ResponseEntity.status(201).body(situacaoCadastroService.save(pSituacaoCadastroDTO));
     }
 
-    @PatchMapping("/v1/{id}")
+    @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<SituacaoCadastroDTO> updateSituacaoCadastro(
             @PathVariable Integer id, @RequestBody @Valid SituacaoCadastroDTO pSituacaoCadastroDTO) {
         return ResponseEntity.ok(situacaoCadastroService.update(id, pSituacaoCadastroDTO));
     }
 
-    @DeleteMapping("/v1/{id}")
+    @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<MessagesResponseDTO> deleteSituacaoCadastro(@PathVariable Integer id) {
         return ResponseEntity.ok(situacaoCadastroService.delete(id));

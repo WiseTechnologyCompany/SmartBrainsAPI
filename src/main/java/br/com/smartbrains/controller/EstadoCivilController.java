@@ -10,35 +10,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/estadocivil")
+@RequestMapping("/v1/estadocivil")
 public class EstadoCivilController {
 
     @Autowired
     EstadoCivilService estadoCivilService;
 
-    @GetMapping("/v1")
+    @GetMapping
     public ResponseEntity<List<EstadoCivilDTO>> getAll() {
         return ResponseEntity.ok(estadoCivilService.findAll());
     }
 
-    @GetMapping("/v1/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<EstadoCivilDTO> getEstadoCivilById(@PathVariable Integer id) {
         return ResponseEntity.ok(estadoCivilService.findById(id));
     }
 
-    @PostMapping("/v1")
+    @PostMapping
     @Transactional
     public ResponseEntity<EstadoCivilDTO> saveEstadoCivil(@RequestBody @Valid EstadoCivilDTO pEstadoCivilDTO) {
         return ResponseEntity.status(201).body(estadoCivilService.save(pEstadoCivilDTO));
     }
 
-    @PatchMapping("/v1/{id}")
+    @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<EstadoCivilDTO> updateEstadoCivil(@PathVariable Integer id, @RequestBody @Valid EstadoCivilDTO pEstadoCivilDTO) {
         return ResponseEntity.ok(estadoCivilService.update(id, pEstadoCivilDTO));
     }
 
-    @DeleteMapping("/v1/{id}")
+    @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> deleteGenero(@PathVariable Integer id) {
         return ResponseEntity.ok(estadoCivilService.delete(id));

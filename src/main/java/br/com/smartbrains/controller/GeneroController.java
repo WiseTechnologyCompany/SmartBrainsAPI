@@ -10,35 +10,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/generos")
+@RequestMapping("/v1/generos")
 public class GeneroController {
 
     @Autowired
     GeneroService generoService;
 
-    @GetMapping("/v1")
+    @GetMapping
     public ResponseEntity<List<GeneroDTO>> getAll() {
         return ResponseEntity.ok(generoService.findAll());
     }
 
-    @GetMapping("/v1/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<GeneroDTO> getGeneroById(@PathVariable Integer id) {
         return ResponseEntity.ok(generoService.findById(id));
     }
 
-    @PostMapping("/v1")
+    @PostMapping
     @Transactional
     public ResponseEntity<GeneroDTO> saveGenero(@RequestBody @Valid GeneroDTO pGeneroDTO) {
         return ResponseEntity.status(201).body(generoService.save(pGeneroDTO));
     }
 
-    @PatchMapping("/v1/{id}")
+    @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<GeneroDTO> updateGenero(@PathVariable Integer id, @RequestBody @Valid GeneroDTO pGeneroDTO) {
         return ResponseEntity.ok(generoService.update(id, pGeneroDTO));
     }
 
-    @DeleteMapping("/v1/{id}")
+    @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> deleteGenero(@PathVariable Integer id) {
         return ResponseEntity.ok(generoService.delete(id));

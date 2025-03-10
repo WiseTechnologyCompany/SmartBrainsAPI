@@ -38,3 +38,6 @@ out/
 
 ### Testes ###
 htmlReport/
+
+# Ignorar arquivo de Build
+/dist/*.jar
