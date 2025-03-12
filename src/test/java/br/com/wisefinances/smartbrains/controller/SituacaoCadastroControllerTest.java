@@ -24,30 +24,30 @@ public class SituacaoCadastroControllerTest extends AbstractControllerTest {
     @Test
     @Order(1)
     void getAll() throws Exception {
-        testGet("/situacaocadastro/v1");
+        testGet("/v1/situacaocadastro");
     }
 
     @Test
     @Order(2)
     void findSituacaoCadastroById() throws Exception {
-        testGet("/situacaocadastro/v1/1");
+        testGet("/v1/situacaocadastro/1");
     }
 
     @Test
     @Order(3)
     void saveSituacaoCadastro() throws Exception {
-        testPost("/situacaocadastro/v1", situacaoCadastro);
+        testPost("/v1/situacaocadastro", situacaoCadastro);
     }
 
     @Test
     @Order(4)
     void updateSituacaoCadastro() throws Exception {
-        testPatch("/situacaocadastro/v1/1", situacaoCadastro);
+        testPatch("/v1/situacaocadastro/1", situacaoCadastro);
     }
 
     @Test
     @Order(5)
     void deleteSituacaoCadastro() throws Exception {
-        testDelete("/situacaocadastro/v1/1");
+        testDelete("/v1/situacaocadastro/1");
     }
 }
