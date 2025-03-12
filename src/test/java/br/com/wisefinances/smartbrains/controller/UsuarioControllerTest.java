@@ -24,30 +24,30 @@ public class UsuarioControllerTest extends AbstractControllerTest {
     @Test
     @Order(1)
     void getAll() throws Exception {
-        testGet("/usuarios/v1");
+        testGet("/v1/usuarios");
     }
 
     @Test
     @Order(2)
     void findUsuarioById() throws Exception {
-        testGet("/usuarios/v1/1");
+        testGet("/v1/usuarios/1");
     }
 
     @Test
     @Order(3)
     void saveUsuario() throws Exception {
-        testPost("/usuarios/v1", usuario);
+        testPost("/v1/usuarios", usuario);
     }
 
     @Test
     @Order(4)
     void updateUsuario() throws Exception {
-        testPatch("/usuarios/v1/1", usuario);
+        testPatch("/v1/usuarios/1", usuario);
     }
 
     @Test
     @Order(5)
     void deleteUsuario() throws Exception {
-        testDelete("/usuarios/v1/1");
+        testDelete("/v1/usuarios/1");
     }
 }

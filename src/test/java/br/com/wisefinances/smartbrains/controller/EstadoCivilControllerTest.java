@@ -24,30 +24,30 @@ public class EstadoCivilControllerTest extends AbstractControllerTest {
     @Test
     @Order(1)
     void getAll() throws Exception {
-        testGet("/estadocivil/v1");
+        testGet("/v1/estadocivil");
     }
 
     @Test
     @Order(2)
     void findEstadoCivilById() throws Exception {
-        testGet("/estadocivil/v1/1");
+        testGet("/v1/estadocivil/1");
     }
 
     @Test
     @Order(3)
     void saveEstadoCivil() throws Exception {
-        testPost("/estadocivil/v1", estadoCivil);
+        testPost("/v1/estadocivil", estadoCivil);
     }
 
     @Test
     @Order(4)
     void updateEstadoCivil() throws Exception {
-        testPatch("/estadocivil/v1/1", estadoCivil);
+        testPatch("/v1/estadocivil/1", estadoCivil);
     }
 
     @Test
     @Order(5)
     void deleteGenero() throws Exception {
-        testDelete("/estadocivil/v1/1");
+        testDelete("/v1/estadocivil/1");
     }
 }
