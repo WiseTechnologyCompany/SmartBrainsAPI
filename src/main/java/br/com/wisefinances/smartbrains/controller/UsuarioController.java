@@ -3,7 +3,7 @@ package br.com.wisefinances.smartbrains.controller;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
 import br.com.wisefinances.smartbrains.model.dto.UsuarioDTO;
-import br.com.wisefinances.smartbrains.model.modify.dto.ModifyUsuarioDTO;
+import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +32,14 @@ public class UsuarioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<MessagesResponseDTO> saveUsuario(@RequestBody @Valid ModifyUsuarioDTO modifyUsuarioDTO) {
-        return ResponseEntity.status(201).body(usuarioService.save(modifyUsuarioDTO));
+    public ResponseEntity<MessagesResponseDTO> saveUsuario(@RequestBody @Valid CreateUsuarioDTO createUsuarioDTO) {
+        return ResponseEntity.status(201).body(usuarioService.save(createUsuarioDTO));
     }
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<ModifyUsuarioDTO> updateUsuario(@PathVariable Integer id, @RequestBody @Valid ModifyUsuarioDTO modifyUsuarioDTO) {
-        return ResponseEntity.ok(usuarioService.update(id, modifyUsuarioDTO));
+    public ResponseEntity<CreateUsuarioDTO> updateUsuario(@PathVariable Integer id, @RequestBody @Valid CreateUsuarioDTO createUsuarioDTO) {
+        return ResponseEntity.ok(usuarioService.update(id, createUsuarioDTO));
     }
 
     @DeleteMapping("/{id}")
