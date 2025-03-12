@@ -24,30 +24,30 @@ public class GeneroControllerTest extends AbstractControllerTest {
     @Test
     @Order(1)
     void getAll() throws Exception {
-        testGet("/generos/v1");
+        testGet("/v1/generos");
     }
 
     @Test
     @Order(2)
     void getGeneroById() throws Exception {
-        testGet("/generos/v1/1");
+        testGet("/v1/generos/1");
     }
 
     @Test
     @Order(3)
     void saveGenero() throws Exception {
-        testPost("/generos/v1", genero);
+        testPost("/v1/generos", genero);
     }
 
     @Test
     @Order(4)
     void updateGenero() throws Exception {
-        testPatch("/generos/v1/1", genero);
+        testPatch("/v1/generos/1", genero);
     }
 
     @Test
     @Order(5)
     void deleteGenero() throws Exception {
-        testDelete("/generos/v1/1");
+        testDelete("/v1/generos/1");
     }
 }
