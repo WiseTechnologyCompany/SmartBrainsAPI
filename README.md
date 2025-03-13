@@ -91,7 +91,7 @@ $ http://localhost:8080/auth
 # Exemplo de requisição
 {
     "username": "email@dominio.com",
-    "password": "senha"
+    "password": "senha123"
 }
 ```
 
@@ -106,31 +106,31 @@ $ http://localhost:8080/auth
 🔹 GET
 ```bash
 # Retorna todos os registros
-$ http://localhost:8080/usuario/v1
+$ http://localhost:8080/v1/usuarios
 ```
 
 🔹 GET
 ```bash
 # Retorna o registro pelo ID
-$ http://localhost:8080/usuario/v1/{💲id}
+$ http://localhost:8080/v1/usuarios/{💲id}
 ```
 
 🔹 POST
 ```bash
 # Salva um registro
-$ http://localhost:8080/usuario/v1
+$ http://localhost:8080/v1/usuarios
 ```
 
 🔹 PATCH
 ```bash
 # Atualiza um registro
-$ http://localhost:8080/usuario/v1/{💲id}
+$ http://localhost:8080/v1/usuarios/{💲id}
 ```
 
 🔹 DELETE
 ```bash
 # Deleta um registro
-$ http://localhost:8080/usuario/v1/{💲id}
+$ http://localhost:8080/v1/usuarios/{💲id}
 ```
 
 
