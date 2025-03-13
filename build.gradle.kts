@@ -1,5 +1,7 @@
 plugins {
 	java
+	id("jacoco")
+	id("org.sonarqube") version "3.5.0.2730"
 	id("org.springframework.boot") version "3.3.9"
 	id("io.spring.dependency-management") version "1.1.7"
 }
@@ -9,7 +11,7 @@ version = "0.1.5"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion.set(JavaLanguageVersion.of(21))
 	}
 }
 
@@ -62,4 +64,25 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.named<JacocoReport>("jacocoTestReport") {
+	reports {
+		xml.required.set(true)
+		html.required.set(true)
+	}
+
+	classDirectories.setFrom(
+		files(
+			classDirectories.files.map {
+				fileTree(it) {
+					exclude(
+						"**/config/**",
+						"**/exceptions/**",
+						"**/SmartBrainsApplication.class"
+					)
+				}
+			}
+		)
+	)
 }
