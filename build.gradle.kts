@@ -1,7 +1,7 @@
 plugins {
 	java
 	id("jacoco")
-	id("org.sonarqube") version "3.5.0.2730"
+	id("org.sonarqube") version "4.0.0.2929"
 	id("org.springframework.boot") version "3.3.9"
 	id("io.spring.dependency-management") version "1.1.7"
 }
@@ -64,9 +64,12 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.named<JacocoReport>("jacocoTestReport") {
+	dependsOn(tasks.test)
+
 	reports {
 		xml.required.set(true)
 		html.required.set(true)
@@ -85,4 +88,13 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 			}
 		)
 	)
+}
+
+sonar {
+	properties {
+		property("sonar.organization", "WiseFinances")
+		property("sonar.projectKey", "SmartBrainsAPI")
+		property("sonar.host.url", "https://sonarcloud.io")
+		property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.get().asFile}/reports/jacoco/test/jacocoTestReport.xml")
+	}
 }
