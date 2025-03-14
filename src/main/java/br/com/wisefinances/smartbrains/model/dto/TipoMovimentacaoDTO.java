@@ -1,5 +1,6 @@
 package br.com.wisefinances.smartbrains.model.dto;
 
+import br.com.wisefinances.smartbrains.model.entity.TipoMovimentacao;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,8 @@ public class TipoMovimentacaoDTO {
     @Size(max = 50)
     private String descricao;
 
+    public TipoMovimentacaoDTO(TipoMovimentacao tipoMovimentacao) {
+        this.id = tipoMovimentacao.getId();
+        this.descricao = tipoMovimentacao.getDescricao();
+    }
 }
