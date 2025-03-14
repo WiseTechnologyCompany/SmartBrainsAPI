@@ -1,4 +1,4 @@
-package br.com.wisefinances.smartbrains.model.modify.entity;
+package br.com.wisefinances.smartbrains.model.create.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "usuarios", schema = "public")
-public class ModifyUsuario {
+public class CreateUsuario {
 
     @Id
     @Column(name = "id", nullable = false)

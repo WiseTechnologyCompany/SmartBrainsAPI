@@ -1,7 +1,8 @@
 package br.com.wisefinances.smartbrains.repository;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.modify.entity.ModifyUsuario;
+import br.com.wisefinances.smartbrains.model.create.entity.CreateUsuario;
+import br.com.wisefinances.smartbrains.repository.create.CreateUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +29,7 @@ public class UsuarioRepositoryTest extends AbstractTest {
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    ModifyUsuarioRepository modifyUsuarioRepository;
+    CreateUsuarioRepository createUsuarioRepository;
 
     @BeforeEach
     void setUp() throws IOException {
@@ -58,8 +59,8 @@ public class UsuarioRepositoryTest extends AbstractTest {
     @Order(3)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
-            var usuarioEntity = objectMapper.readValue(usuario, ModifyUsuario.class);
-            var savedUsuario = modifyUsuarioRepository.save(usuarioEntity);
+            var usuarioEntity = objectMapper.readValue(usuario, CreateUsuario.class);
+            var savedUsuario = createUsuarioRepository.save(usuarioEntity);
 
             assertThat(usuarioEntity).isNotNull();
             assertThat(savedUsuario).isNotNull();

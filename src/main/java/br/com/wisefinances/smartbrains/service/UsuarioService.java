@@ -3,10 +3,10 @@ package br.com.wisefinances.smartbrains.service;
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.enums.SituacaoCadastro;
-import br.com.wisefinances.smartbrains.model.modify.dto.ModifyUsuarioDTO;
-import br.com.wisefinances.smartbrains.model.modify.entity.ModifyUsuario;
+import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
+import br.com.wisefinances.smartbrains.model.create.entity.CreateUsuario;
 import br.com.wisefinances.smartbrains.model.dto.UsuarioDTO;
-import br.com.wisefinances.smartbrains.repository.ModifyUsuarioRepository;
+import br.com.wisefinances.smartbrains.repository.create.CreateUsuarioRepository;
 import br.com.wisefinances.smartbrains.repository.SituacaoCadastroRepository;
 import br.com.wisefinances.smartbrains.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioService extends AbstractSpecificService<UsuarioDTO, ModifyUsuarioDTO, MessagesResponseDTO> {
+public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUsuarioDTO, MessagesResponseDTO> {
 
     @Autowired
     ModelMapper modelMapper;
@@ -26,7 +26,7 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, ModifyUs
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    ModifyUsuarioRepository modifyUsuarioRepository;
+    CreateUsuarioRepository createUsuarioRepository;
 
     @Autowired
     SituacaoCadastroRepository situacaoCadastroRepository;
@@ -42,17 +42,17 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, ModifyUs
     }
 
     @Override
-    public MessagesResponseDTO save(ModifyUsuarioDTO pModifyUsuarioDTO) {
-        var usuario = modelMapper.map(pModifyUsuarioDTO, ModifyUsuario.class);
-        modifyUsuarioRepository.save(usuario);
+    public MessagesResponseDTO save(CreateUsuarioDTO pCreateUsuarioDTO) {
+        var usuario = modelMapper.map(pCreateUsuarioDTO, CreateUsuario.class);
+        createUsuarioRepository.save(usuario);
         return MessagesResponseDTO.createSucessResponseDTO;
     }
 
     @Override
-    public ModifyUsuarioDTO update(Integer pId, ModifyUsuarioDTO pModifyUsuarioDTO) {
-        var usuario = modifyUsuarioRepository.getReferenceById(pId);
-        BeanUtils.copyProperties(pModifyUsuarioDTO, usuario, "id");
-        return new ModifyUsuarioDTO(modifyUsuarioRepository.save(usuario));
+    public CreateUsuarioDTO update(Integer pId, CreateUsuarioDTO pCreateUsuarioDTO) {
+        var usuario = createUsuarioRepository.getReferenceById(pId);
+        BeanUtils.copyProperties(pCreateUsuarioDTO, usuario, "id");
+        return new CreateUsuarioDTO(createUsuarioRepository.save(usuario));
     }
 
     @Override

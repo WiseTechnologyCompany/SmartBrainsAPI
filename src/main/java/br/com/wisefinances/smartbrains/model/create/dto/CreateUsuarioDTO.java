@@ -1,6 +1,6 @@
-package br.com.wisefinances.smartbrains.model.modify.dto;
+package br.com.wisefinances.smartbrains.model.create.dto;
 
-import br.com.wisefinances.smartbrains.model.modify.entity.ModifyUsuario;
+import br.com.wisefinances.smartbrains.model.create.entity.CreateUsuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ModifyUsuarioDTO {
+public class CreateUsuarioDTO {
 
     @NotNull
     @Size(max = 100)
@@ -61,17 +61,17 @@ public class ModifyUsuarioDTO {
     @NotNull
     private Integer estadoCivil;
 
-    public ModifyUsuarioDTO(ModifyUsuario modifyUsuario) {
-        this.nome = modifyUsuario.getNome();
-        this.sobrenome = modifyUsuario.getSobrenome();
-        this.email = modifyUsuario.getEmail();
-        this.senha = modifyUsuario.getSenha();
-        this.cpf = modifyUsuario.getCpf();
-        this.profissao = modifyUsuario.getProfissao();
-        this.empresa = modifyUsuario.getEmpresa();
-        this.dataNascimento = modifyUsuario.getDataNascimento();
-        this.telefone = modifyUsuario.getTelefone();
-        this.genero = modifyUsuario.getGenero();
-        this.estadoCivil = modifyUsuario.getEstadoCivil();
+    public CreateUsuarioDTO(CreateUsuario createUsuario) {
+        this.nome = createUsuario.getNome();
+        this.sobrenome = createUsuario.getSobrenome();
+        this.email = createUsuario.getEmail();
+        this.senha = createUsuario.getSenha();
+        this.cpf = createUsuario.getCpf();
+        this.profissao = createUsuario.getProfissao();
+        this.empresa = createUsuario.getEmpresa();
+        this.dataNascimento = createUsuario.getDataNascimento();
+        this.telefone = createUsuario.getTelefone();
+        this.genero = createUsuario.getGenero();
+        this.estadoCivil = createUsuario.getEstadoCivil();
     }
 }

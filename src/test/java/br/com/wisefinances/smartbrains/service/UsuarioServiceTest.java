@@ -1,7 +1,7 @@
 package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.modify.dto.ModifyUsuarioDTO;
+import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,7 +55,7 @@ public class UsuarioServiceTest extends AbstractTest {
     @Order(3)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
-            var modifyUsuarioDTO = objectMapper.readValue(usuario, ModifyUsuarioDTO.class);
+            var modifyUsuarioDTO = objectMapper.readValue(usuario, CreateUsuarioDTO.class);
             var usuario = usuarioService.save(modifyUsuarioDTO);
 
             assertThat(usuario).isNotNull();
@@ -66,7 +66,7 @@ public class UsuarioServiceTest extends AbstractTest {
     @Order(4)
     void update() {
         Assertions.assertDoesNotThrow(() -> {
-            var modifyUsuarioDTO = objectMapper.readValue(usuario, ModifyUsuarioDTO.class);
+            var modifyUsuarioDTO = objectMapper.readValue(usuario, CreateUsuarioDTO.class);
             var usuario = usuarioService.update(ID, modifyUsuarioDTO);
 
             assertThat(usuario).isNotNull();
