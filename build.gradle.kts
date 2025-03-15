@@ -41,6 +41,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-logging")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 
 	// Converter de uma Classe para outra
 	implementation("org.modelmapper:modelmapper:3.0.0")
@@ -92,8 +93,8 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 
 sonar {
 	properties {
+		property("sonar.projectKey", "2a105fdhk4f9s8f57h2ar")
 		property("sonar.organization", "WiseFinances")
-		property("sonar.projectKey", "SmartBrainsAPI")
 		property("sonar.host.url", "https://sonarcloud.io")
 		property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.get().asFile}/reports/jacoco/test/jacocoTestReport.xml")
 	}

@@ -2,6 +2,7 @@ package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.model.dto.GeneroDTO;
 import br.com.wisefinances.smartbrains.service.GeneroService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Gênero")
 @RequestMapping("/v1/generos")
 public class GeneroController {
 

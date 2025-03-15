@@ -5,6 +5,7 @@ import br.com.wisefinances.smartbrains.domain.page.PageDTO;
 import br.com.wisefinances.smartbrains.model.dto.UsuarioDTO;
 import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.service.UsuarioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Tag(name = "Usuário")
 @RequestMapping("/v1/usuarios")
 public class UsuarioController {
 

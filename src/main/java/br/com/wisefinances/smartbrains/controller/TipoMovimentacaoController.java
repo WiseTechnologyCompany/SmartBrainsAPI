@@ -2,6 +2,7 @@ package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.model.dto.TipoMovimentacaoDTO;
 import br.com.wisefinances.smartbrains.service.TipoMovimentacaoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Tipo Movimentação")
 @RequestMapping("/v1/tipomovimentacao")
 public class TipoMovimentacaoController {
 

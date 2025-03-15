@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.controller;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.SituacaoCadastroDTO;
 import br.com.wisefinances.smartbrains.service.SituacaoCadastroService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Situação Cadastro")
 @RequestMapping("/v1/situacaocadastro")
 public class SituacaoCadastroController {
 

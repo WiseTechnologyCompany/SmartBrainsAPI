@@ -26,6 +26,11 @@ server:
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
 
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+
 
 ---
 
