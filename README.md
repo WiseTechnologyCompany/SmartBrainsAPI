@@ -149,5 +149,5 @@ $ http://localhost:8080/v1/usuarios/{💲id}
 
 ## 🖥️ Desenvolvido por:
 
-### 📝 Linkedin: [Gustavo Correa](https://www.linkedin.com/in/gustavo-chauar-correa-946168269/)
 ### 📝 Linkedin: [Felipe Franco](https://www.linkedin.com)
+### 📝 Linkedin: [Gustavo Correa](https://www.linkedin.com/in/gustavo-chauar-correa-946168269/)
