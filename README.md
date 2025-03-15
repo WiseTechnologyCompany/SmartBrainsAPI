@@ -36,7 +36,7 @@
 
 ```bash
 # URL para acessar a documentação da API 
-$ http://localhost:8080/swagger-ui/index.html#/
+$ http://localhost:8080/SmartBrainsAPI/swagger-ui/index.html#/
 ```
 
 
