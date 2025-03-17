@@ -32,22 +32,23 @@ public class EstadoCivilService extends AbstractService<EstadoCivilDTO, Messages
     }
 
     @Override
-    public EstadoCivilDTO save(EstadoCivilDTO pEstadoCivilDTO) {
-        var estadoCivilToSave = modelMapper.map(pEstadoCivilDTO, EstadoCivil.class);
-        return new EstadoCivilDTO(estadoCivilRepository.save(estadoCivilToSave));
+    public MessagesResponseDTO save(EstadoCivilDTO pEstadoCivilDTO) {
+        var estadoCivil = modelMapper.map(pEstadoCivilDTO, EstadoCivil.class);
+        new EstadoCivilDTO(estadoCivilRepository.save(estadoCivil));
+        return MessagesResponseDTO.createSucessResponseDTO;
     }
 
     @Override
     public EstadoCivilDTO update(Integer pId, EstadoCivilDTO pEstadoCivilDTO) {
-        var findEstadoCivil = estadoCivilRepository.getReferenceById(pId);
-        BeanUtils.copyProperties(pEstadoCivilDTO, findEstadoCivil, "id");
-        return new EstadoCivilDTO(estadoCivilRepository.save(findEstadoCivil));
+        var estadoCivil = estadoCivilRepository.getReferenceById(pId);
+        BeanUtils.copyProperties(pEstadoCivilDTO, estadoCivil, "id");
+        return new EstadoCivilDTO(estadoCivilRepository.save(estadoCivil));
     }
 
     @Override
     public MessagesResponseDTO delete(Integer pId) {
-        var findEstadoCivil = estadoCivilRepository.getReferenceById(pId);
-        estadoCivilRepository.delete(findEstadoCivil);
+        var estadoCivil = estadoCivilRepository.getReferenceById(pId);
+        estadoCivilRepository.delete(estadoCivil);
         return MessagesResponseDTO.deleteSucessResponseDTO;
     }
 }

@@ -32,9 +32,10 @@ public class TipoMovimentacaoService extends AbstractService<TipoMovimentacaoDTO
     }
 
     @Override
-    public TipoMovimentacaoDTO save(TipoMovimentacaoDTO pTipoMovimentacaoDTO) {
+    public MessagesResponseDTO save(TipoMovimentacaoDTO pTipoMovimentacaoDTO) {
         var tipoMovimentacao = modelMapper.map(pTipoMovimentacaoDTO, TipoMovimentacao.class);
-        return new TipoMovimentacaoDTO(tipoMovimentacaoRepository.save(tipoMovimentacao));
+        new TipoMovimentacaoDTO(tipoMovimentacaoRepository.save(tipoMovimentacao));
+        return MessagesResponseDTO.createSucessResponseDTO;
     }
 
     @Override

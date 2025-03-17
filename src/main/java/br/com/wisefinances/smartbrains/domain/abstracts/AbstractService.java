@@ -10,7 +10,7 @@ public abstract class AbstractService<T, M> {
 
     public abstract T findById(Integer pId);
 
-    public abstract T save(T pObject);
+    public abstract M save(T pObject);
 
     public abstract T update(Integer pId, T pObject);
 

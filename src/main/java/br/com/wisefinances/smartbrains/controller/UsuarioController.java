@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "Usuário")
+@Tag(name = "Usuários")
 @RequestMapping("/v1/usuarios")
 public class UsuarioController {
 
@@ -23,7 +23,7 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<PageDTO> getAll(@PageableDefault(size = 50, sort = "id") Pageable pageable) {
+    public ResponseEntity<PageDTO> getAll(@PageableDefault(size = 100, sort = "id") Pageable pageable) {
         return ResponseEntity.ok(new PageDTO(usuarioService.findAll(pageable)));
     }
 
@@ -32,20 +32,20 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.findById(id));
     }
 
-    @PostMapping
     @Transactional
+    @PostMapping
     public ResponseEntity<MessagesResponseDTO> saveUsuario(@RequestBody @Valid CreateUsuarioDTO createUsuarioDTO) {
         return ResponseEntity.status(201).body(usuarioService.save(createUsuarioDTO));
     }
 
-    @PatchMapping("/{id}")
     @Transactional
+    @PatchMapping("/{id}")
     public ResponseEntity<CreateUsuarioDTO> updateUsuario(@PathVariable Integer id, @RequestBody @Valid CreateUsuarioDTO createUsuarioDTO) {
         return ResponseEntity.ok(usuarioService.update(id, createUsuarioDTO));
     }
 
-    @DeleteMapping("/{id}")
     @Transactional
+    @DeleteMapping("/{id}")
     public ResponseEntity<MessagesResponseDTO> deleteUsuario(@PathVariable Integer id) {
         return ResponseEntity.ok(usuarioService.delete(id));
     }

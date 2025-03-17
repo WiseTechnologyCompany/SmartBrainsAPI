@@ -32,9 +32,10 @@ public class SituacaoCadastroService extends AbstractService<SituacaoCadastroDTO
     }
 
     @Override
-    public SituacaoCadastroDTO save(SituacaoCadastroDTO pSituacaoCadastroDTO) {
+    public MessagesResponseDTO save(SituacaoCadastroDTO pSituacaoCadastroDTO) {
         var situacaoCadastro = modelMapper.map(pSituacaoCadastroDTO, SituacaoCadastro.class);
-        return new SituacaoCadastroDTO(situacaoCadastroRepository.save(situacaoCadastro));
+        new SituacaoCadastroDTO(situacaoCadastroRepository.save(situacaoCadastro));
+        return MessagesResponseDTO.createSucessResponseDTO;
     }
 
     @Override

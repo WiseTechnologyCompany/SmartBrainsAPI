@@ -1,5 +1,6 @@
 package br.com.wisefinances.smartbrains.controller;
 
+import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.TipoMovimentacaoDTO;
 import br.com.wisefinances.smartbrains.service.TipoMovimentacaoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,21 +29,22 @@ public class TipoMovimentacaoController {
         return ResponseEntity.ok(tipoMovimentacaoService.findById(id));
     }
 
-    @PostMapping
     @Transactional
-    public ResponseEntity<TipoMovimentacaoDTO> saveTipoMovimentacao(@RequestBody @Valid TipoMovimentacaoDTO pTipoMovimentacaoDTO) {
+    @PostMapping
+    public ResponseEntity<MessagesResponseDTO> saveTipoMovimentacao(@RequestBody @Valid TipoMovimentacaoDTO pTipoMovimentacaoDTO) {
         return ResponseEntity.status(201).body(tipoMovimentacaoService.save(pTipoMovimentacaoDTO));
     }
 
-    @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<TipoMovimentacaoDTO> updateTipoMovimentacao(@PathVariable Integer id, @RequestBody @Valid TipoMovimentacaoDTO pTipoMovimentacaoDTO) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<TipoMovimentacaoDTO> updateTipoMovimentacao(
+            @PathVariable Integer id, @RequestBody @Valid TipoMovimentacaoDTO pTipoMovimentacaoDTO) {
         return ResponseEntity.ok(tipoMovimentacaoService.update(id, pTipoMovimentacaoDTO));
     }
 
-    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> deleteTipoMovimentacao(@PathVariable Integer id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessagesResponseDTO> deleteTipoMovimentacao(@PathVariable Integer id) {
         return ResponseEntity.ok(tipoMovimentacaoService.delete(id));
     }
 }

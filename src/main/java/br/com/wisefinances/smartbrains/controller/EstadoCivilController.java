@@ -1,5 +1,6 @@
 package br.com.wisefinances.smartbrains.controller;
 
+import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.EstadoCivilDTO;
 import br.com.wisefinances.smartbrains.service.EstadoCivilService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,21 +29,21 @@ public class EstadoCivilController {
         return ResponseEntity.ok(estadoCivilService.findById(id));
     }
 
-    @PostMapping
     @Transactional
-    public ResponseEntity<EstadoCivilDTO> saveEstadoCivil(@RequestBody @Valid EstadoCivilDTO pEstadoCivilDTO) {
+    @PostMapping
+    public ResponseEntity<MessagesResponseDTO> saveEstadoCivil(@RequestBody @Valid EstadoCivilDTO pEstadoCivilDTO) {
         return ResponseEntity.status(201).body(estadoCivilService.save(pEstadoCivilDTO));
     }
 
-    @PatchMapping("/{id}")
     @Transactional
+    @PatchMapping("/{id}")
     public ResponseEntity<EstadoCivilDTO> updateEstadoCivil(@PathVariable Integer id, @RequestBody @Valid EstadoCivilDTO pEstadoCivilDTO) {
         return ResponseEntity.ok(estadoCivilService.update(id, pEstadoCivilDTO));
     }
 
-    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> deleteGenero(@PathVariable Integer id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessagesResponseDTO> deleteEstadoCivil(@PathVariable Integer id) {
         return ResponseEntity.ok(estadoCivilService.delete(id));
     }
 }

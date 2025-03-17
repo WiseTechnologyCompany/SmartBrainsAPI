@@ -1,5 +1,6 @@
 package br.com.wisefinances.smartbrains.controller;
 
+import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.GeneroDTO;
 import br.com.wisefinances.smartbrains.service.GeneroService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Gênero")
+@Tag(name = "Gêneros")
 @RequestMapping("/v1/generos")
 public class GeneroController {
 
@@ -28,21 +29,21 @@ public class GeneroController {
         return ResponseEntity.ok(generoService.findById(id));
     }
 
-    @PostMapping
     @Transactional
-    public ResponseEntity<GeneroDTO> saveGenero(@RequestBody @Valid GeneroDTO pGeneroDTO) {
+    @PostMapping
+    public ResponseEntity<MessagesResponseDTO> saveGenero(@RequestBody @Valid GeneroDTO pGeneroDTO) {
         return ResponseEntity.status(201).body(generoService.save(pGeneroDTO));
     }
 
-    @PatchMapping("/{id}")
     @Transactional
+    @PatchMapping("/{id}")
     public ResponseEntity<GeneroDTO> updateGenero(@PathVariable Integer id, @RequestBody @Valid GeneroDTO pGeneroDTO) {
         return ResponseEntity.ok(generoService.update(id, pGeneroDTO));
     }
 
-    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> deleteGenero(@PathVariable Integer id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessagesResponseDTO> deleteGenero(@PathVariable Integer id) {
         return ResponseEntity.ok(generoService.delete(id));
     }
 }

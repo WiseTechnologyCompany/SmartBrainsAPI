@@ -29,21 +29,21 @@ public class SituacaoCadastroController {
         return ResponseEntity.ok(situacaoCadastroService.findById(id));
     }
 
-    @PostMapping
     @Transactional
-    public ResponseEntity<SituacaoCadastroDTO> saveSituacaoCadastro(@RequestBody @Valid SituacaoCadastroDTO pSituacaoCadastroDTO) {
+    @PostMapping
+    public ResponseEntity<MessagesResponseDTO> saveSituacaoCadastro(@RequestBody @Valid SituacaoCadastroDTO pSituacaoCadastroDTO) {
         return ResponseEntity.status(201).body(situacaoCadastroService.save(pSituacaoCadastroDTO));
     }
 
-    @PatchMapping("/{id}")
     @Transactional
+    @PatchMapping("/{id}")
     public ResponseEntity<SituacaoCadastroDTO> updateSituacaoCadastro(
             @PathVariable Integer id, @RequestBody @Valid SituacaoCadastroDTO pSituacaoCadastroDTO) {
         return ResponseEntity.ok(situacaoCadastroService.update(id, pSituacaoCadastroDTO));
     }
 
-    @DeleteMapping("/{id}")
     @Transactional
+    @DeleteMapping("/{id}")
     public ResponseEntity<MessagesResponseDTO> deleteSituacaoCadastro(@PathVariable Integer id) {
         return ResponseEntity.ok(situacaoCadastroService.delete(id));
     }

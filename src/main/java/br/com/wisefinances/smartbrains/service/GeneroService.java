@@ -32,9 +32,10 @@ public class GeneroService extends AbstractService<GeneroDTO, MessagesResponseDT
     }
 
     @Override
-    public GeneroDTO save(GeneroDTO pGeneroDTO) {
+    public MessagesResponseDTO save(GeneroDTO pGeneroDTO) {
         var genero = modelMapper.map(pGeneroDTO, Genero.class);
-        return new GeneroDTO(generoRepository.save(genero));
+        new GeneroDTO(generoRepository.save(genero));
+        return MessagesResponseDTO.createSucessResponseDTO;
     }
 
     @Override
