@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @SpringBootTest
-public class UsuarioControllerTest extends AbstractControllerTest {
+class UsuarioControllerTest extends AbstractControllerTest {
 
     private String usuario;
 

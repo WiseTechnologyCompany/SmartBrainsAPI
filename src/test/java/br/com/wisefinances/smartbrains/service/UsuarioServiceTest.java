@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class UsuarioServiceTest extends AbstractTest {
+class UsuarioServiceTest extends AbstractTest {
 
     private String usuario;
 

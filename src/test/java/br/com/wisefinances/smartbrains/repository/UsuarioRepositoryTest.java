@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-public class UsuarioRepositoryTest extends AbstractTest {
+class UsuarioRepositoryTest extends AbstractTest {
 
     private String usuario;
 

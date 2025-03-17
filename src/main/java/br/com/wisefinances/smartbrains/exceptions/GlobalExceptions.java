@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptions {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<?> notFoundException() {
+    public ResponseEntity<EntityNotFoundDTO> notFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(EntityNotFoundDTO.entityNotFoundDTO);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> internalServerErrorException(Exception ex) {
+    public ResponseEntity<InternalServerErrorDTO> internalServerErrorException(Exception ex) {
         InternalServerErrorDTO internalServerErrorResponseDTO = new InternalServerErrorDTO(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Internal Server Error",

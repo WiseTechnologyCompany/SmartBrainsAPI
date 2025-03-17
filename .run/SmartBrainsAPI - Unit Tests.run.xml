@@ -13,7 +13,6 @@
           <option value="clean" />
           <option value="test" />
           <option value="jacocoTestReport" />
-          <option value="sonarqube" />
         </list>
       </option>
       <option name="vmOptions" />

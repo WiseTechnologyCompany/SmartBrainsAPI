@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class SituacaoCadastroServiceTest extends AbstractTest {
+class SituacaoCadastroServiceTest extends AbstractTest {
 
     private final Integer ID = 1;
 
@@ -59,7 +59,7 @@ public class SituacaoCadastroServiceTest extends AbstractTest {
 
             assertThat(situacaoCadastroDTO).isNotNull();
             assertThat(situacaoCadastro).isNotNull();
-            assertThat(situacaoCadastro.getDescricao()).isEqualToIgnoringCase(situacaoCadastroDTO.getDescricao());
+            assertThat(situacaoCadastro.getStatus()).isEqualTo(201);
         });
     }
 

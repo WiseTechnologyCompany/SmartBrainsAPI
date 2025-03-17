@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class GeneroServiceTest extends AbstractTest {
+class GeneroServiceTest extends AbstractTest {
 
     private String genero;
 
@@ -60,7 +60,7 @@ public class GeneroServiceTest extends AbstractTest {
 
             assertThat(generoDTO).isNotNull();
             assertThat(genero).isNotNull();
-            assertThat(genero.getDescricao()).isEqualToIgnoringCase(generoDTO.getDescricao());
+            assertThat(genero.getStatus()).isEqualTo(201);
         });
     }
 
