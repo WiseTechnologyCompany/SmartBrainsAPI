@@ -69,6 +69,10 @@ sourceSets {
 	}
 }
 
+tasks.withType<Copy> {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)

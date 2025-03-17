@@ -22,5 +22,8 @@ jobs:
       - name: Permission for Gradlew
         run: chmod +x gradlew
 
+      - name: Clean with Gradle Wrapper
+        run: ./gradlew clean
+
       - name: Build with Gradle Wrapper
         run: ./gradlew build
