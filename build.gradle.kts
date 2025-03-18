@@ -72,6 +72,12 @@ tasks.withType<Test> {
 	finalizedBy(tasks.jacocoTestReport)
 }
 
+sourceSets {
+	test {
+		resources.srcDirs("src/test/resources")
+	}
+}
+
 tasks.named<JacocoReport>("jacocoTestReport") {
 	dependsOn(tasks.test)
 
