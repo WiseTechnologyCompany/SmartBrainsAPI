@@ -7,9 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      USERNAME: ${{ github.actor }}
-
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v4
@@ -29,24 +26,5 @@ jobs:
       - name: Executar Testes
         run: ./gradlew test --no-daemon
 
-      - name: Gerar Badge de Cobertura de Código
-        id: jacoco
-        uses: cicirello/jacoco-badge-generator@v2
-        with:
-          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
-
-      - name: Commit e Push do Badge
-        uses: EndBug/add-and-commit@v7
-        with:
-          default_author: github_actions
-          message: 'commit badge'
-          add: '*.svg'
-
-      - name: Upload Jacoco
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: build/reports/jacoco/test
-
       - name: Mostrar Usuário
-        run: echo "BUILD EXECUTADO POR:$USERNAME"
+        run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}
