@@ -1,3 +1,8 @@
+name: Build Spring Boot with Gradle
+
+on:
+  pull_request:
+
 jobs:
   build:
     runs-on: ubuntu-20.04
