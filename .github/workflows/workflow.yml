@@ -11,11 +11,11 @@ jobs:
       postgres:
         image: postgres:16
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: smartbrains_test
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB:  ${{ secrets.POSTGRES_DATABASE }}
         ports:
-          - 5432:5432
+          - 5432:${{ secrets.POSTGRES_PORT }}
 
     steps:
       - name: Checkout do Código
@@ -31,11 +31,11 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Criar pasta para o arquivo de configuração
-        run: mkdir -p /home/runner/smartbrains
+        run: mkdir -p  ${{ secrets.FOLDER_PATH }}
 
       - name: Copiar arquivo smartbrains.properties
         run: |
-          cp ./dist/smartbrains.properties /home/runner/smartbrains/smartbrains.properties
+          cp  ${{ secrets.FILE_PATH }}
 
       - name: Construir Projeto
         run: ./gradlew build --no-daemon --info
