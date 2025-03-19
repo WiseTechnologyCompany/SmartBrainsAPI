@@ -5,14 +5,28 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: smartbrains_test
+        ports:
+          - 5432:5432
+
+      env:
+        DATABASE_IP: localhost
+        DATABASE_PORT: 5432
+        DATABASE_USER: postgres
+        DATABASE_PASSWORD: postgres
+        DATABASE_TEST_NAME: smartbrains_test
 
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v4
-
-      - name: Listar arquivos de teste
-        run: find src/test/resources -type f
 
       - name: Configurar Java 21
         uses: actions/setup-java@v4
@@ -29,5 +43,5 @@ jobs:
       - name: Executar Testes
         run: ./gradlew test --no-daemon
 
-      - name: Mostrar Usuário
+      - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}

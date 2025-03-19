@@ -72,9 +72,9 @@ tasks.withType<Test> {
 	finalizedBy(tasks.jacocoTestReport)
 }
 
-sourceSets {
-	test {
-		resources.srcDirs("src/test/resources")
+tasks.processTestResources {
+	from("src/test/resources") {
+		include("**/*.json")
 	}
 }
 
