@@ -1,17 +1,16 @@
-package br.com.wisefinances.smartbrains.model.entity;
+package br.com.wisefinances.smartbrains.model.create.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
-import java.sql.Date;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "movimentacao", schema = "public")
-public class Movimentacao {
+public class CreateMovimentacao {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -21,12 +20,12 @@ public class Movimentacao {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuarios usuario;
+    private Integer usuario;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tipomovimentacao", nullable = false)
-    private TipoMovimentacao tipomovimentacao;
+    private Integer tipomovimentacao;
 
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
@@ -34,8 +33,5 @@ public class Movimentacao {
     @NotNull
     @Column(name = "valor", precision = 11, scale = 2, nullable = false)
     private BigDecimal valor;
-
-    @Column(name = "data_criacao")
-    private Date dataCriacao;
 
 }

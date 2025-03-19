@@ -1,5 +1,6 @@
 package br.com.wisefinances.smartbrains.model.dto;
 
+import br.com.wisefinances.smartbrains.model.entity.Movimentacao;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,4 +30,12 @@ public class MovimentacaoDTO {
 
     private Date dataCriacao;
 
+    public MovimentacaoDTO(Movimentacao movimentacao) {
+        this.id = movimentacao.getId();
+        this.usuario = new UsuarioDTO(movimentacao.getUsuario());
+        this.tipoMovimentacao = new TipoMovimentacaoDTO(movimentacao.getTipomovimentacao());
+        this.valor = movimentacao.getValor();
+        this.descricao = movimentacao.getDescricao();
+        this.dataCriacao = movimentacao.getDataCriacao();
+    }
 }
