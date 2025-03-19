@@ -1,6 +1,6 @@
-INSERT INTO situacao_cadastro (id, descricao) VALUES
-    (1, 'ATIVO'),
-    (0, 'EXCLUIDO');
+INSERT INTO situacao_cadastro (descricao) VALUES
+    ('ATIVO'),
+    ('EXCLUIDO');
 
 INSERT INTO generos (descricao) VALUES
     ('MASCULINO'),
