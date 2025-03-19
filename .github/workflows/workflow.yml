@@ -15,7 +15,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB:  ${{ secrets.POSTGRES_DATABASE }}
         ports:
-          - 5432:${{ secrets.POSTGRES_PORT }}
+          - 5432:5432
 
     steps:
       - name: Checkout do Código
