@@ -53,15 +53,14 @@ jobs:
           badges-directory: .github/badges
 
       - name: Commit do Badge de Cobertura
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .github/badges/jacoco.svg
-          git commit -m "Atualizando Badge de Cobertura do JaCoCo" || echo "Nenhuma mudança foi realizada"
-          git push || echo "Nenhuma mudança foi realizada"
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github-actions[bot]
+          message: "Adicionando Badge de Cobertura de Testes"
+          add: '.github/badges/jacoco.svg'
 
-      - name: Enviar Relatório de Cobertura
-        uses: actions/upload-artifact@v3
+      - name: Enviar Relatório de Cobertura de Testes
+        uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
           path: .github/badges/jacoco.svg
