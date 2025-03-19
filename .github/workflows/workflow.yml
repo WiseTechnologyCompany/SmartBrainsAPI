@@ -43,10 +43,10 @@ jobs:
       - name: Executar Testes e Gerar Relatório JaCoCo
         run: ./gradlew clean test jacocoTestReport --no-daemon --info
 
-      - name: Criar diretório para badges
+      - name: Criar diretório para Badges
         run: mkdir -p .github/badges
 
-      - name: Gerar SVG de cobertura
+      - name: Gerar SVG de Cobertura
         uses: cicirello/jacoco-badge-generator@v2
         with:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
