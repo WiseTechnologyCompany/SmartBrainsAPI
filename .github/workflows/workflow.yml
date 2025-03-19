@@ -5,7 +5,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: smartbrains_test
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout do Código
@@ -20,11 +30,18 @@ jobs:
       - name: Permissão Gradle Wrapper
         run: chmod +x ./gradlew
 
+      - name: Criar pasta para o arquivo de configuração
+        run: mkdir -p /home/runner/smartbrains
+
+      - name: Copiar arquivo smartbrains.properties
+        run: |
+          cp ./dist/smartbrains.properties /home/runner/smartbrains/smartbrains.properties
+
       - name: Construir Projeto
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon --info
 
       - name: Executar Testes
-        run: ./gradlew test --no-daemon
+        run: ./gradlew test --no-daemon --info
 
-      - name: Mostrar Usuário
+      - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}

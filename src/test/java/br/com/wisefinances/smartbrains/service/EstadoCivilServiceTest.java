@@ -59,7 +59,7 @@ class EstadoCivilServiceTest extends AbstractTest {
 
             assertThat(estadoCivilDTO).isNotNull();
             assertThat(estadoCivil).isNotNull();
-            assertThat(estadoCivil.getStatus()).isEqualTo(201);;
+            assertThat(estadoCivil.getStatus()).isEqualTo(201);
         });
     }
 

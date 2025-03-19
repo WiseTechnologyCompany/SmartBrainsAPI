@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum SituacaoCadastro {
 
     ATIVO(1, "ATIVO"),
-    EXCLUIDO(0, "EXCLUIDO");
+    EXCLUIDO(2, "EXCLUIDO");
 
     private final Integer id;
     private final String descricao;
