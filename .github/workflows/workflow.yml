@@ -61,7 +61,7 @@ jobs:
           git push || echo "Nenhuma mudança foi realizada"
 
       - name: Enviar Relatório de Cobertura
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
           path: .github/badges/jacoco.svg
