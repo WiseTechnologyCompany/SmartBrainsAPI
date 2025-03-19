@@ -43,27 +43,5 @@ jobs:
       - name: Executar Testes e Gerar Relatório JaCoCo
         run: ./gradlew clean test jacocoTestReport --no-daemon --info
 
-      - name: Criar diretório para Badges
-        run: mkdir -p .github/badges
-
-      - name: Gerar SVG de Cobertura
-        uses: cicirello/jacoco-badge-generator@v2
-        with:
-          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
-          badges-directory: .github/badges
-
-      - name: Commit do Badge de Cobertura
-        uses: EndBug/add-and-commit@v7
-        with:
-          default_author: github-actions[bot]
-          message: "Adicionando Badge de Cobertura de Testes"
-          add: '.github/badges/jacoco.svg'
-
-      - name: Enviar Relatório de Cobertura de Testes
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: .github/badges/jacoco.svg
-
       - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}
