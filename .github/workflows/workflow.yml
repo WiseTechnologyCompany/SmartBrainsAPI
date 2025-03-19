@@ -38,10 +38,10 @@ jobs:
           cp ./dist/smartbrains.properties /home/runner/smartbrains/smartbrains.properties
 
       - name: Construir Projeto
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon --info
 
       - name: Executar Testes
-        run: ./gradlew test --no-daemon
+        run: ./gradlew test --no-daemon --info
 
       - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}
