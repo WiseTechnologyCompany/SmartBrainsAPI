@@ -72,12 +72,6 @@ tasks.withType<Test> {
 	finalizedBy(tasks.jacocoTestReport)
 }
 
-tasks.processTestResources {
-	from("src/test/resources") {
-		include("**/*.json")
-	}
-}
-
 tasks.named<JacocoReport>("jacocoTestReport") {
 	dependsOn(tasks.test)
 
