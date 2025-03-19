@@ -41,7 +41,7 @@ jobs:
         run: ./gradlew build --no-daemon --info
 
       - name: Executar Testes
-        run: ./gradlew test --no-daemon --info
+        run: ./gradlew clean test jacocoTestReport --no-daemon --info
 
       - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}
