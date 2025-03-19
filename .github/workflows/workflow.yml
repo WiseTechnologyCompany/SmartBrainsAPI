@@ -37,11 +37,14 @@ jobs:
       - name: Permissão Gradle Wrapper
         run: chmod +x ./gradlew
 
+      - name: Limpar build anterior
+        run: ./gradlew clean
+
       - name: Construir Projeto
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon --info
 
       - name: Executar Testes
-        run: ./gradlew test --no-daemon
+        run: ./gradlew test --no-daemon --info
 
       - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}
