@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class CofreServiceTest extends AbstractTest {
+class CofreServiceTest extends AbstractTest {
 
     private String cofre;
 

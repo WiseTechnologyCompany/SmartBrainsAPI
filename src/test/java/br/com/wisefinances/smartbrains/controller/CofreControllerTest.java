@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @SpringBootTest
-public class CofreControllerTest extends AbstractControllerTest {
+class CofreControllerTest extends AbstractControllerTest {
 
     private String cofre;
 
