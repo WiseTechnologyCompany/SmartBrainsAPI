@@ -1,7 +1,7 @@
 package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
+import br.com.wisefinances.smartbrains.model.create.dto.CreateCofreDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,9 +16,9 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class UsuarioServiceTest extends AbstractTest {
+public class CofreServiceTest extends AbstractTest {
 
-    private String usuario;
+    private String cofre;
 
     private final Integer ID = 1;
 
@@ -26,39 +26,39 @@ class UsuarioServiceTest extends AbstractTest {
     ObjectMapper objectMapper;
 
     @Autowired
-    UsuarioService usuarioService;
+    CofreService cofreService;
 
     @BeforeEach
     void setUp() throws IOException {
-        if (usuario == null) {
-            usuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/usuario.json")));
+        if (cofre == null) {
+            cofre = new String(Files.readAllBytes(Paths.get("src/test/resources/cofre/cofre.json")));
         }
     }
 
     @Test
     @Order(1)
     void findAll() {
-        var usuario = usuarioService.findAll(Pageable.unpaged());
-        assertThat(usuario).isNotEmpty();
+        var cofre = cofreService.findAll(Pageable.unpaged());
+        assertThat(cofre).isNotEmpty();
     }
 
     @Test
     @Order(2)
     void findById() {
-        var usuario = usuarioService.findById(ID);
+        var cofre = cofreService.findById(ID);
 
-        assertThat(usuario).isNotNull();
-        assertThat(usuario.getId()).isEqualTo(ID);
+        assertThat(cofre).isNotNull();
+        assertThat(cofre.getId()).isEqualTo(ID);
     }
 
     @Test
     @Order(3)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
-            var createUsuarioDTO = objectMapper.readValue(usuario, CreateUsuarioDTO.class);
-            var usuario = usuarioService.save(createUsuarioDTO);
+            var createCofreDTO = objectMapper.readValue(cofre, CreateCofreDTO.class);
+            var cofre = cofreService.save(createCofreDTO);
 
-            assertThat(usuario).isNotNull();
+            assertThat(cofre).isNotNull();
         });
     }
 
@@ -66,10 +66,10 @@ class UsuarioServiceTest extends AbstractTest {
     @Order(4)
     void update() {
         Assertions.assertDoesNotThrow(() -> {
-            var updateUsuarioDTO = objectMapper.readValue(usuario, CreateUsuarioDTO.class);
-            var usuario = usuarioService.update(ID, updateUsuarioDTO);
+            var updateCofreDTO = objectMapper.readValue(cofre, CreateCofreDTO.class);
+            var cofre = cofreService.update(ID, updateCofreDTO);
 
-            assertThat(usuario).isNotNull();
+            assertThat(cofre).isNotNull();
         });
     }
 
@@ -77,10 +77,7 @@ class UsuarioServiceTest extends AbstractTest {
     @Order(5)
     void delete() {
         Assertions.assertDoesNotThrow(() -> {
-            usuarioService.delete(ID);
-            var usuario = usuarioService.findById(ID);
-
-            assertThat(usuario.getSituacaoCadastro()).isEqualToIgnoringCase("EXCLUIDO");
+            cofreService.delete(ID);
         });
     }
 }

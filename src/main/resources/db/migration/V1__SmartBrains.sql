@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS cofre (
     id_tipomovimentacao INT NOT NULL,
     valor DECIMAL(11,2) NOT NULL,
     observacao TEXT,
-    data_alteracao DATE DEFAULT CURRENT_DATE,
+    data_criacao DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_tipomovimentacao) REFERENCES tipo_movimentacao(id)
 );

@@ -1,11 +1,12 @@
 package br.com.wisefinances.smartbrains.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,12 +22,12 @@ public class Cofre {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuarios id_usuario;
+    private Usuarios usuario;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tipomovimentacao", nullable = false)
-    private TipoMovimentacao id_tipomovimentacao;
+    private TipoMovimentacao tipoMovimentacao;
 
     @NotNull
     @Column(name = "valor", precision = 11, scale = 2, nullable = false)
@@ -35,7 +36,8 @@ public class Cofre {
     @Column(name = "observacao", columnDefinition = "TEXT")
     private String observacao;
 
-    @Column(name = "data_alteracao")
-    private Date dataAlteracao;
+    @Column(name = "data_criacao")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate dataCriacao;
 
 }
