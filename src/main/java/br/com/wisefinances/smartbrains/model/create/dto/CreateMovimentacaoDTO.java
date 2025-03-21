@@ -30,7 +30,7 @@ public class CreateMovimentacaoDTO {
     public CreateMovimentacaoDTO(CreateMovimentacao createMovimentacao) {
         this.id = createMovimentacao.getId();
         this.usuario = createMovimentacao.getUsuario();
-        this.tipoMovimentacao = createMovimentacao.getTipomovimentacao();
+        this.tipoMovimentacao = createMovimentacao.getTipoMovimentacao();
         this.valor = createMovimentacao.getValor();
         this.descricao = createMovimentacao.getDescricao();
     }

@@ -18,14 +18,12 @@ public class CreateMovimentacao {
     private Integer id;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @Column(name = "id_usuario", nullable = false)
     private Integer usuario;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_tipomovimentacao", nullable = false)
-    private Integer tipomovimentacao;
+    @Column(name = "id_tipomovimentacao", nullable = false)
+    private Integer tipoMovimentacao;
 
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
