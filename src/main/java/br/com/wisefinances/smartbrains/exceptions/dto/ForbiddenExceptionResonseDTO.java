@@ -25,7 +25,7 @@ public class ForbiddenExceptionResonseDTO {
         this.timestamp = LocalDateTime.now();
     }
 
-    public static ForbiddenExceptionResonseDTO forbiddenResponseDTO = new ForbiddenExceptionResonseDTO(
+    public static final ForbiddenExceptionResonseDTO forbiddenResponseDTO = new ForbiddenExceptionResonseDTO(
             403,
             "Forbidden",
             "Acesso Negado!",

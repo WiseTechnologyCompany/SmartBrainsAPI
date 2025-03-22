@@ -25,14 +25,14 @@ public class TokenExceptionResponseDTO {
         this.timestamp = LocalDateTime.now();
     }
 
-    public static TokenExceptionResponseDTO invalidTokenResponseDTO = new TokenExceptionResponseDTO(
+    public static final TokenExceptionResponseDTO invalidTokenResponseDTO = new TokenExceptionResponseDTO(
             403,
             "Forbidden",
             "Token Inválido!",
             "O Token de acesso está inválido ou ausente! Por favor, autentique-se para obter um Token de acesso válido!"
     );
 
-    public static TokenExceptionResponseDTO requestWithoutTokenResponseDTO = new TokenExceptionResponseDTO(
+    public static final TokenExceptionResponseDTO requestWithoutTokenResponseDTO = new TokenExceptionResponseDTO(
             403,
             "Forbidden",
             "Token Inválido!",

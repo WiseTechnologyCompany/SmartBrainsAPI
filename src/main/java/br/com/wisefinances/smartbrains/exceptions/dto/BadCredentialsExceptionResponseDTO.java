@@ -25,7 +25,7 @@ public class BadCredentialsExceptionResponseDTO {
         this.timestamp = LocalDateTime.now();
     }
 
-    public static BadCredentialsExceptionResponseDTO badCredentialsExceptionResponseDTO = new BadCredentialsExceptionResponseDTO(
+    public static final BadCredentialsExceptionResponseDTO badCredentialsExceptionResponseDTO = new BadCredentialsExceptionResponseDTO(
             401,
             "Unauthorized",
             "Credenciais Inválidas!",

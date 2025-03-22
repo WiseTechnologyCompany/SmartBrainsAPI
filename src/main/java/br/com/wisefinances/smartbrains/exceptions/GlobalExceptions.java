@@ -17,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.io.IOException;
+import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptions implements AuthenticationEntryPoint {
@@ -30,28 +31,28 @@ public class GlobalExceptions implements AuthenticationEntryPoint {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> badRequestException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<BadRequestExceptionResponseDTO>> badRequestException(MethodArgumentNotValidException ex) {
         var erros = ex.getFieldErrors();
         return ResponseEntity.badRequest().body(erros.stream().map(BadRequestExceptionResponseDTO::new).toList());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<?> httpMessageNotReadableException(HttpMessageNotReadableException ex) {
+    public ResponseEntity<String> httpMessageNotReadableException(HttpMessageNotReadableException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<?> invalidCredentialsException() {
+    public ResponseEntity<BadCredentialsExceptionResponseDTO> invalidCredentialsException() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(BadCredentialsExceptionResponseDTO.badCredentialsExceptionResponseDTO);
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<?> authenticationException() {
+    public ResponseEntity<BadCredentialsExceptionResponseDTO> authenticationException() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(BadCredentialsExceptionResponseDTO.badCredentialsExceptionResponseDTO);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<?> accessDeniedException() {
+    public ResponseEntity<ForbiddenExceptionResonseDTO> accessDeniedException() {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ForbiddenExceptionResonseDTO.forbiddenResponseDTO);
     }
 
