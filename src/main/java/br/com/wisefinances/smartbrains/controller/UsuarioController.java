@@ -5,6 +5,7 @@ import br.com.wisefinances.smartbrains.domain.page.PageDTO;
 import br.com.wisefinances.smartbrains.model.dto.UsuarioDTO;
 import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.service.UsuarioService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Tag(name = "Usuários")
 @RequestMapping("/v1/usuarios")
+@SecurityRequirement(name = "Authorization")
 public class UsuarioController {
 
     @Autowired

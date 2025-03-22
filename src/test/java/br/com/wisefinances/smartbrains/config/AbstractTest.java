@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Import(value = TestDataBaseConfig.class)
+@Import(value = {TestDataBaseConfig.class, TestSecurityConfig.class})
 public abstract class AbstractTest {
 
 }

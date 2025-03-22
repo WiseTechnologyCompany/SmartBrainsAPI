@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.controller;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.EstadoCivilDTO;
 import br.com.wisefinances.smartbrains.service.EstadoCivilService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Estado Civil")
 @RequestMapping("/v1/estadocivil")
+@SecurityRequirement(name = "Authorization")
 public class EstadoCivilController {
 
     @Autowired

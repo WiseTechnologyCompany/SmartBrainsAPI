@@ -59,3 +59,9 @@ CREATE TABLE IF NOT EXISTS movimentacao (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_tipomovimentacao) REFERENCES tipo_movimentacao(id)
 );
+
+CREATE TABLE IF NOT EXISTS autenticacao(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);

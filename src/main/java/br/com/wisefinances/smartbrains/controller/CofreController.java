@@ -5,6 +5,7 @@ import br.com.wisefinances.smartbrains.domain.page.PageDTO;
 import br.com.wisefinances.smartbrains.model.create.dto.CreateCofreDTO;
 import br.com.wisefinances.smartbrains.model.dto.CofreDTO;
 import br.com.wisefinances.smartbrains.service.CofreService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Tag(name = "Cofre")
 @RequestMapping("/v1/cofre")
+@SecurityRequirement(name = "Authorization")
 public class CofreController {
 
     @Autowired

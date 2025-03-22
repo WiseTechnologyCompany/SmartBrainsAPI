@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.controller;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.TipoMovimentacaoDTO;
 import br.com.wisefinances.smartbrains.service.TipoMovimentacaoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Tipo Movimentação")
 @RequestMapping("/v1/tipomovimentacao")
+@SecurityRequirement(name = "Authorization")
 public class TipoMovimentacaoController {
 
     @Autowired
