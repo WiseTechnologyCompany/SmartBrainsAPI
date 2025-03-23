@@ -23,7 +23,7 @@ public class AuthenticationResponseDTO {
         this.timestamp = LocalDateTime.now();
     }
 
-    public static AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(
+    public static final AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(
             200,
             "Ok!",
             "O Usuário foi criado com sucesso!"
