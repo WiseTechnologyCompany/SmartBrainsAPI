@@ -19,11 +19,11 @@ public class AutenticacaoDTO {
     private Integer id;
 
     @Email
+    @NotBlank
     @Size(max = 255)
-    @NotBlank()
     private String email;
 
-    @NotBlank()
+    @NotBlank
     private String password;
 
     public AutenticacaoDTO(Autenticacao autenticacao) {

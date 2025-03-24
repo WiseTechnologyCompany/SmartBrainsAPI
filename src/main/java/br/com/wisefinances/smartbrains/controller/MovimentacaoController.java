@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "Movimentações")
+@Tag(name = "Movimentação")
 @RequestMapping("/v1/movimentacao")
 @SecurityRequirement(name = "Authorization")
 public class MovimentacaoController {

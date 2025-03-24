@@ -31,14 +31,14 @@ public class AutenticacaoController {
     @Hidden
     @Transactional
     @PostMapping("/save")
-    public ResponseEntity<AuthenticationResponseDTO> signUp(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
-        return ResponseEntity.ok(autenticacaoService.saveAuthentication(autenticacaoDTO));
+    public ResponseEntity<AuthenticationResponseDTO> saveAuth(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
+        return ResponseEntity.status(201).body(autenticacaoService.saveAuthentication(autenticacaoDTO));
     }
 
     @PostMapping
     @SecurityRequirement(name = "Authorization")
-    public ResponseEntity<TokenResponseDTO> signIn(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
+    public ResponseEntity<TokenResponseDTO> getToken(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
         var authentication = authenticationManager.authenticate(autenticacaoDTO.convertAuthentication());
-        return ResponseEntity.ok(autenticacaoService.generateTokenForAuthentication(authentication));
+        return ResponseEntity.status(201).body(autenticacaoService.generateTokenForAuthentication(authentication));
     }
 }
