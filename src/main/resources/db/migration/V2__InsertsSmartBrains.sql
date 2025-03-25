@@ -33,3 +33,6 @@ INSERT INTO movimentacao (id_usuario, id_tipomovimentacao, descricao, valor) VAL
      (1, 2, 'Pagamento de aluguel', 1200.00),
      (2, 1, 'Recebimento de bônus', 2500.00),
      (3, 2, 'Transferência para conta poupança', 300.00);
+
+INSERT INTO autenticacao (email, password) VALUES
+    ('teste@teste.com.br', '$2a$10$2rVGvA/cxINIVYrg3Xa/BuwhKci.u/AKfGerva8hiUfa.tcPtqTke');

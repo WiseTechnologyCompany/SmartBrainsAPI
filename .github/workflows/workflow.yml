@@ -1,4 +1,4 @@
-name: Build Spring Boot with Gradle
+name: Build Spring Boot with Gradle and SonarQube
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ jobs:
         env:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_DB:  ${{ secrets.POSTGRES_DATABASE }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DATABASE }}
         ports:
           - 5432:5432
 
@@ -27,13 +27,27 @@ jobs:
           java-version: '21'
           distribution: 'oracle'
 
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Gradle Packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
       - name: Permissão Gradle Wrapper
         run: chmod +x ./gradlew
 
       - name: Criar pasta para o arquivo de configuração
         run: mkdir -p  ${{ secrets.FOLDER_PATH }}
 
-      - name: Copiar arquivo smartbrains.properties
+      - name: Copiar arquivo Properties
         run: |
           cp  ${{ secrets.FILE_PATH }}
 
@@ -42,6 +56,11 @@ jobs:
 
       - name: Executar Testes e Gerar Relatório JaCoCo
         run: ./gradlew clean test jacocoTestReport --no-daemon --info
+
+      - name: Build e Análise do SonarQube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew sonar --info
 
       - name: Usuário
         run: echo "BUILD EXECUTADO POR:" ${{ github.actor }}
