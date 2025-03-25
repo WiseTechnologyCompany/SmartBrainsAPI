@@ -67,10 +67,6 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-tasks.withType<Copy> {
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
 tasks.withType<Test> {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
@@ -81,8 +77,8 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 
 	reports {
 		xml.required.set(true)
-		html.required.set(true)
 		csv.required.set(true)
+		html.required.set(true)
 	}
 
 	classDirectories.setFrom(
