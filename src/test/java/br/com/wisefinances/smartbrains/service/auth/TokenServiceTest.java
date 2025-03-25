@@ -14,11 +14,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,18 +33,12 @@ public class TokenServiceTest extends AbstractTest {
     @Autowired
     TokenService tokenService;
 
-    private String invalidAuth;
-
     private String authentication;
 
     @BeforeEach
     void setUp() throws IOException {
         if (authentication == null) {
             authentication = new String(Files.readAllBytes(Paths.get("src/test/resources/autenticacao/getToken/tokenAutenticacao.json")));
-        }
-
-        if (invalidAuth == null) {
-            invalidAuth = new String(Files.readAllBytes(Paths.get("src/test/resources/autenticacao/saveAuth/saveAutenticacao.json")));
         }
     }
 
@@ -61,13 +53,19 @@ public class TokenServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     void getSubject() {
         Assertions.assertDoesNotThrow(() -> {
             String token = sendAuthRequest();
             String subject = tokenService.getSubject(token);
             Assertions.assertNotNull(subject);
         });
+    }
+
+    @Test
+    @Order(3)
+    void getSubjectWithExcetion() {
+        Assertions.assertThrows(JWTVerificationException.class, () -> tokenService.getSubject("iOiJ2I43zI.1NiI7sI.Yg9fwqk"));
     }
 
     String sendAuthRequest() throws Exception {
@@ -79,11 +77,5 @@ public class TokenServiceTest extends AbstractTest {
                 .getResponse()
                 .getContentAsString()
                 .substring(17, 189);
-    }
-
-    @Test
-    @Order(4)
-    void getSubjectWithExcetion() {
-        Assertions.assertThrows(JWTVerificationException.class, () -> tokenService.getSubject("iOiJ2I43zI.1NiI7sI.Yg9fwqk"));
     }
 }
