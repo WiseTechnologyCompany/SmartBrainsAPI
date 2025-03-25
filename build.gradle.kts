@@ -1,7 +1,7 @@
 plugins {
 	java
 	id("jacoco")
-	id("org.sonarqube") version "4.0.0.2929"
+	id("org.sonarqube") version "6.0.1.5171"
 	id("org.springframework.boot") version "3.3.9"
 	id("io.spring.dependency-management") version "1.1.7"
 }
@@ -94,4 +94,12 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 			}
 		)
 	)
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "WiseFinances_SmartBrainsAPI")
+		property("sonar.organization", "wisefinances")
+		property("sonar.host.url", "https://sonarcloud.io")
+	}
 }
