@@ -95,11 +95,3 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 		)
 	)
 }
-
-sonar {
-	properties {
-		property("sonar.projectKey", "WiseFinances_SmartBrainsAPI")
-		property("sonar.organization", "wisefinances")
-		property("sonar.host.url", "https://sonarcloud.io")
-	}
-}
