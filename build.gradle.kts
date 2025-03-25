@@ -95,12 +95,3 @@ tasks.named<JacocoReport>("jacocoTestReport") {
 		)
 	)
 }
-
-sonar {
-	properties {
-		property("sonar.projectKey", "2a105fdhk4f9s8f57h2ar")
-		property("sonar.organization", "WiseFinances")
-		property("sonar.host.url", "https://sonarcloud.io")
-		property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.get().asFile}/reports/jacoco/test/jacocoTestReport.xml")
-	}
-}
