@@ -2,6 +2,9 @@ name: Build Spring Boot with Gradle and SonarQube
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -27,7 +30,7 @@ jobs:
           java-version: '21'
           distribution: 'oracle'
 
-      - name: Cache SonarQube packages
+      - name: Cache SonarQube Packages
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
