@@ -6,7 +6,7 @@
 
 <div align="center">
   Esta API foi projetada com o intuito de ajudar as pessoas a exercerem um controle mais eficaz sobre seus gastos financeiros. Com ela, os usuários podem acessar e interagir de forma prática e eficiente com seus dados financeiros, permitindo o        
-  monitoramento detalhado de suas despesas e a organização de suas finanças. Por meio dos endpoints disponíveis, a API oferece uma maneira ágil e segura de integrar e analisar informações, facilitando a tomada de decisões mais conscientes e o planejamento     
+  monitoramento de suas despesas e a organização de suas finanças. Por meio dos endpoints disponíveis, a API oferece uma maneira ágil e segura de integrar e analisar informações, facilitando a tomada de decisões mais conscientes e o planejamento     
   financeiro pessoal.
 </div>
 
@@ -82,7 +82,7 @@ $ /home/<nome-do-usuario>/smartbrains/smartbrains.properties
   🔹 POST
 ```bash
 # Gera um Token JWT 
-$ http://localhost:8080/auth
+$ http://localhost:8080/SmartBrainsAPI/v1/auth
 ```
 
  <br>
@@ -90,7 +90,7 @@ $ http://localhost:8080/auth
 ```bash
 # Exemplo de requisição
 {
-    "username": "email@dominio.com",
+    "username": "email@dominio.com.br",
     "password": "senha123"
 }
 ```
@@ -106,31 +106,31 @@ $ http://localhost:8080/auth
 🔹 GET
 ```bash
 # Retorna todos os registros
-$ http://localhost:8080/v1/usuarios
+$ http://localhost:8080/SmartBrainsAPI/v1/usuarios
 ```
 
 🔹 GET
 ```bash
 # Retorna o registro pelo ID
-$ http://localhost:8080/v1/usuarios/{💲id}
+$ http://localhost:8080/SmartBrainsAPI/v1/usuarios/{💲id}
 ```
 
 🔹 POST
 ```bash
 # Salva um registro
-$ http://localhost:8080/v1/usuarios
+$ http://localhost:8080/SmartBrainsAPI/v1/usuarios
 ```
 
 🔹 PATCH
 ```bash
 # Atualiza um registro
-$ http://localhost:8080/v1/usuarios/{💲id}
+$ http://localhost:8080/SmartBrainsAPI/v1/usuarios/{💲id}
 ```
 
 🔹 DELETE
 ```bash
 # Deleta um registro
-$ http://localhost:8080/v1/usuarios/{💲id}
+$ http://localhost:8080/SmartBrainsAPI/v1/usuarios/{💲id}
 ```
 
 
