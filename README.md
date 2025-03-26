@@ -16,18 +16,36 @@
 
 ## 🚀 Ferramentas Utilizadas
 
-* Intellij
+* 🔵 Intellij
 
-* Java 21
+* ☕️ Java 21
 
-* DBeaver
+* 🦫 DBeaver
 
-* Postgres 16
+* 🐘 Postgres 16
 
-* Spring Boot 3.3.9
+* 🟢 Spring Boot 3.3.9
+
+* ☁️ Sonar Cloud 6.0.1.5171
 
 
-  <br> 
+ <br> 
+
+
+## 🔍 Testes
+
+* [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=bugs)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
+
+* [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
+
+* [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=coverage)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
+
+* [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
+  
+* [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
+
+
+ <br> 
 
 
 ## 📑 Swagger UI
