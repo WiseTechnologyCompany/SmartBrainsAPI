@@ -16,17 +16,17 @@
 
 ## 🚀 Ferramentas Utilizadas
 
-* Intellij
+* 🔵 Intellij
 
-* Java 21
+* ☕️ Java 21
 
-* DBeaver
+* 🦫 DBeaver
 
-* Postgres 16
+* 🐘 Postgres 16
 
-* Spring Boot 3.3.9
+* 🟢 Spring Boot 3.3.9
 
-* Sonar Cloud 6.0.1.5171
+* ☁️ Sonar Cloud 6.0.1.5171
 
 
  <br> 
