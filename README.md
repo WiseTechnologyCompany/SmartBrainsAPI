@@ -1,5 +1,4 @@
 <div align="center"> <br> 
-
   <img align="center" alt="smart-brains-logo" height="150" width="150" src="https://github.com/user-attachments/assets/a80a0c13-12d8-4255-ae61-768fa7d35b3e" />
 </div> <br>  <br> 
 
