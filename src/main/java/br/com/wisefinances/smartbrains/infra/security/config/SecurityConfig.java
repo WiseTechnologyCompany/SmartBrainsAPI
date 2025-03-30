@@ -24,8 +24,9 @@ public class SecurityConfig {
     private SecurityFilter securityFilter;
 
     @Bean
-    public SecurityFilterChain testSecurityFilterChain(HttpSecurity httpSecurity, GlobalExceptions globalExceptions) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, GlobalExceptions globalExceptions) throws Exception {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configure(httpSecurity))
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests ->
