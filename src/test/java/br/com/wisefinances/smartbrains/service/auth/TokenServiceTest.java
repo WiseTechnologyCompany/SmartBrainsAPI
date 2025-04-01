@@ -64,6 +64,25 @@ public class TokenServiceTest extends AbstractTest {
 
     @Test
     @Order(3)
+    void isTokenValid() {
+        Assertions.assertDoesNotThrow(() -> {
+            String token = sendAuthRequest();
+            tokenService.isTokenValid(token);
+            Assertions.assertTrue(tokenService.isTokenValid(token));
+        });
+    }
+
+    @Test
+    @Order(4)
+    void isTokenValidWithException() {
+        Assertions.assertDoesNotThrow(() -> {
+            tokenService.isTokenValid("token");
+            Assertions.assertFalse(tokenService.isTokenValid("token"));
+        });
+    }
+
+    @Test
+    @Order(5)
     void getSubjectWithExcetion() {
         Assertions.assertThrows(JWTVerificationException.class, () -> tokenService.getSubject("iOiJ2I43zI.1NiI7sI.Yg9fwqk"));
     }

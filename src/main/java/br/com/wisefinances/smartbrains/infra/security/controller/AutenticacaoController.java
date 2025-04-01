@@ -2,8 +2,10 @@ package br.com.wisefinances.smartbrains.infra.security.controller;
 
 import br.com.wisefinances.smartbrains.infra.security.model.dto.AutenticacaoDTO;
 import br.com.wisefinances.smartbrains.infra.security.model.response.AuthenticationResponseDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.response.CheckTokenResponseDTO;
 import br.com.wisefinances.smartbrains.infra.security.model.response.TokenResponseDTO;
 import br.com.wisefinances.smartbrains.infra.security.service.AutenticacaoService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -33,6 +35,12 @@ public class AutenticacaoController {
     @PostMapping("/save")
     public ResponseEntity<AuthenticationResponseDTO> saveAuth(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
         return ResponseEntity.status(201).body(autenticacaoService.saveAuthentication(autenticacaoDTO));
+    }
+
+    @Hidden
+    @PostMapping("/check")
+    public ResponseEntity<CheckTokenResponseDTO> checkToken(@RequestBody @NotNull TokenResponseDTO tokenResponseDTO) {
+        return ResponseEntity.status(200).body(autenticacaoService.checkToken(tokenResponseDTO));
     }
 
     @PostMapping

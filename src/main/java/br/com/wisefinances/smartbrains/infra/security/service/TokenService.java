@@ -41,6 +41,23 @@ public class TokenService {
         }
     }
 
+    public Boolean isTokenValid(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+
+            JWT.require(algorithm)
+                    .withIssuer("SmartBrainsAPI")
+                    .build()
+                    .verify(token)
+                    .getSubject();
+
+            return true;
+        }
+        catch (JWTVerificationException ex) {
+            return false;
+        }
+    }
+
     private Instant expirationDate() {
         return LocalDateTime.now().plusHours(3).toInstant(ZoneOffset.of("-03:00"));
     }

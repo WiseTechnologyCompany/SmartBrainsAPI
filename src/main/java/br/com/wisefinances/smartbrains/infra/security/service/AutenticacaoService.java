@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.infra.security.service;
 import br.com.wisefinances.smartbrains.infra.security.model.dto.AutenticacaoDTO;
 import br.com.wisefinances.smartbrains.infra.security.model.entity.Autenticacao;
 import br.com.wisefinances.smartbrains.infra.security.model.response.AuthenticationResponseDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.response.CheckTokenResponseDTO;
 import br.com.wisefinances.smartbrains.infra.security.model.response.TokenResponseDTO;
 import br.com.wisefinances.smartbrains.infra.security.repository.AutenticacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,20 @@ public class AutenticacaoService implements UserDetailsService {
     @Autowired
     private AutenticacaoRepository autenticacaoRepository;
 
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return autenticacaoRepository.findByEmail(email);
+    }
+
     public AuthenticationResponseDTO saveAuthentication(AutenticacaoDTO autenticacaoDTO) {
         validateAuthentication(autenticacaoDTO);
         autenticacaoRepository.save(autenticacaoDTO.toEntity());
         return AuthenticationResponseDTO.authenticationResponseDTO;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return autenticacaoRepository.findByEmail(email);
+    public CheckTokenResponseDTO checkToken(TokenResponseDTO pTokenResponseDTO) {
+        var isValid = tokenService.isTokenValid(pTokenResponseDTO.getAccess_token());
+        return new CheckTokenResponseDTO(isValid);
     }
 
     public TokenResponseDTO generateTokenForAuthentication(Authentication authentication) {

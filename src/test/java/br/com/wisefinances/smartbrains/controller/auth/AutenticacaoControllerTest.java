@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,6 +17,8 @@ public class AutenticacaoControllerTest extends AbstractControllerTest {
 
     private String getToken;
 
+    private String accessToken;
+
     @BeforeEach
     void setUp() throws IOException {
         if (getToken == null) {
@@ -24,6 +27,10 @@ public class AutenticacaoControllerTest extends AbstractControllerTest {
 
         if (saveAuth == null) {
             saveAuth = new String(Files.readAllBytes(Paths.get("src/test/resources/autenticacao/saveAuth/saveAutenticacao.json")));
+        }
+
+        if (accessToken == null) {
+            accessToken = new String(Files.readAllBytes(Paths.get("src/test/resources/autenticacao/isTokenValid/token.json")));
         }
     }
 
@@ -35,6 +42,12 @@ public class AutenticacaoControllerTest extends AbstractControllerTest {
 
     @Test
     @Order(2)
+    void checkToken() throws Exception {
+        testPostStatusOk("/v1/auth/check", accessToken);
+    }
+
+    @Test
+    @Order(3)
     void getToken() throws Exception {
         testPost("/v1/auth", getToken);
     }
