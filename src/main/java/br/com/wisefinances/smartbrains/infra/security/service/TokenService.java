@@ -13,10 +13,10 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    private final String ISSUER = "SmartBrainsAPI";
-
     @Value("${smartbrains.api.security.jwt.secret}")
     private String secret;
+
+    private static final String ISSUER = "SmartBrainsAPI";
 
     public String generateToken(AutenticacaoDTO autenticacaoDTO) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
