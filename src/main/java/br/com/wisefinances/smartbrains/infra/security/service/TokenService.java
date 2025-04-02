@@ -13,6 +13,8 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
+    private final String ISSUER = "SmartBrainsAPI";
+
     @Value("${smartbrains.api.security.jwt.secret}")
     private String secret;
 
@@ -20,7 +22,7 @@ public class TokenService {
         Algorithm algorithm = Algorithm.HMAC256(secret);
 
         return JWT.create()
-                .withIssuer("SmartBrainsAPI")
+                .withIssuer(ISSUER)
                 .withSubject(autenticacaoDTO.getEmail())
                 .withExpiresAt(expirationDate())
                 .sign(algorithm);
@@ -31,7 +33,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             return JWT.require(algorithm)
-                    .withIssuer("SmartBrainsAPI")
+                    .withIssuer(ISSUER)
                     .build()
                     .verify(token)
                     .getSubject();
@@ -46,7 +48,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             JWT.require(algorithm)
-                    .withIssuer("SmartBrainsAPI")
+                    .withIssuer(ISSUER)
                     .build()
                     .verify(token)
                     .getSubject();
