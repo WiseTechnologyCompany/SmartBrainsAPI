@@ -66,10 +66,6 @@ public class CreateUsuario {
     private String telefone;
 
     @NotNull
-    @Column(name = "id_genero", nullable = false)
-    private Integer genero;
-
-    @NotNull
     @Column(name = "id_estadocivil", nullable = false)
     private Integer estadoCivil;
 

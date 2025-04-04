@@ -57,9 +57,6 @@ public class UsuarioDTO {
     private String telefone;
 
     @NotNull
-    private String genero;
-
-    @NotNull
     private String estadoCivil;
 
     private String situacaoCadastro;
@@ -78,7 +75,6 @@ public class UsuarioDTO {
         this.empresa = usuarios.getEmpresa();
         this.dataNascimento = usuarios.getDataNascimento();
         this.telefone = usuarios.getTelefone();
-        this.genero = usuarios.getGenero().getDescricao();
         this.estadoCivil = usuarios.getEstadoCivil().getDescricao();
         this.situacaoCadastro = usuarios.getSituacaoCadastro().getDescricao();
         this.dataCadastro = usuarios.getDataCadastro();

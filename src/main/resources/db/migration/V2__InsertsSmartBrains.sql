@@ -18,11 +18,10 @@ INSERT INTO tipo_movimentacao (descricao) VALUES
      ('ENTRADA'),
      ('SAIDA');
 
-
-INSERT INTO usuarios (nome, sobrenome, email, senha, cpf, profissao, empresa, data_nascimento, telefone, id_genero, id_estadocivil, id_situacaocadastro) VALUES
-     ('Carlos', 'Silva', 'carlos@email.com', 'senha123', '123.456.789-00', 'Engenheiro', 'TechCorp', '1990-05-15', '(11) 91234-5678', 1, 1,1 ),
-     ('Mariana', 'Oliveira', 'mariana@email.com', 'senha456', '987.654.321-00', 'Médica', 'Hospital Vida', '1985-09-10', '(21) 99876-5432', 2, 2, 1),
-     ('Alex', 'Souza', 'alex@email.com', 'senha789', '456.123.789-99', 'Designer', 'Creative Studio', '1995-02-20', '(31) 97654-3210', 3, 3, 1);
+INSERT INTO usuarios (nome, sobrenome, email, senha, cpf, profissao, empresa, data_nascimento, telefone, id_estadocivil, id_situacaocadastro) VALUES
+     ('Carlos', 'Silva', 'carlos@email.com', 'senha123', '123.456.789-00', 'Engenheiro', 'TechCorp', '1990-05-15', '(11) 91234-5678',  1,1 ),
+     ('Mariana', 'Oliveira', 'mariana@email.com', 'senha456', '987.654.321-00', 'Médica', 'Hospital Vida', '1985-09-10', '(21) 99876-5432',  2, 1),
+     ('Alex', 'Souza', 'alex@email.com', 'senha789', '456.123.789-99', 'Designer', 'Creative Studio', '1995-02-20', '(31) 97654-3210',  3, 1);
 
 INSERT INTO cofre (id_usuario, id_tipomovimentacao, valor, observacao) VALUES
      (1, 1, 1000.00, 'Depósito inicial'),
