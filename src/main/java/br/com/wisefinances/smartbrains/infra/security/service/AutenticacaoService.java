@@ -3,8 +3,11 @@ package br.com.wisefinances.smartbrains.infra.security.service;
 import br.com.wisefinances.smartbrains.infra.security.model.dto.AutenticacaoDTO;
 import br.com.wisefinances.smartbrains.infra.security.model.entity.Autenticacao;
 import br.com.wisefinances.smartbrains.infra.security.model.response.AuthenticationResponseDTO;
-import br.com.wisefinances.smartbrains.infra.security.model.response.CheckTokenResponseDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.response.IsEmailValidResponseDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.response.IsTokenValidResponseDTO;
 import br.com.wisefinances.smartbrains.infra.security.model.response.TokenResponseDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.response.check.CheckEmailDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.response.check.CheckTokenDTO;
 import br.com.wisefinances.smartbrains.infra.security.repository.AutenticacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,9 +40,14 @@ public class AutenticacaoService implements UserDetailsService {
         return AuthenticationResponseDTO.authenticationResponseDTO;
     }
 
-    public CheckTokenResponseDTO checkToken(TokenResponseDTO pTokenResponseDTO) {
-        var isValid = tokenService.isTokenValid(pTokenResponseDTO.getAccess_token());
-        return new CheckTokenResponseDTO(isValid);
+    public IsTokenValidResponseDTO checkToken(CheckTokenDTO pCheckTokenDTO) {
+        var isValid = tokenService.isTokenValid(pCheckTokenDTO.getAccess_token());
+        return new IsTokenValidResponseDTO(isValid);
+    }
+
+    public IsEmailValidResponseDTO checkEmail(CheckEmailDTO pCheckEmailDTO) {
+        var emailAlreadyExists = autenticacaoRepository.existsByEmail(pCheckEmailDTO.getEmail());
+        return new IsEmailValidResponseDTO(emailAlreadyExists);
     }
 
     public TokenResponseDTO generateTokenForAuthentication(Authentication authentication) {

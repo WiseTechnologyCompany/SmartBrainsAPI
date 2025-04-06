@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 @SpringBootTest
 public class AutenticacaoControllerTest extends AbstractControllerTest {
 
+    private String email;
+
     private String saveAuth;
 
     private String getToken;
@@ -32,6 +34,10 @@ public class AutenticacaoControllerTest extends AbstractControllerTest {
         if (accessToken == null) {
             accessToken = new String(Files.readAllBytes(Paths.get("src/test/resources/autenticacao/isTokenValid/token.json")));
         }
+
+        if (email == null) {
+            email = new String(Files.readAllBytes(Paths.get("src/test/resources/autenticacao/isEmailValid/email.json")));
+        }
     }
 
     @Test
@@ -43,11 +49,17 @@ public class AutenticacaoControllerTest extends AbstractControllerTest {
     @Test
     @Order(2)
     void checkToken() throws Exception {
-        testPostStatusOk("/v1/auth/check", accessToken);
+        testPostStatusOk("/v1/auth/check/token", accessToken);
     }
 
     @Test
     @Order(3)
+    void checkEmail() throws Exception {
+        testPostStatusOk("/v1/auth/check/email", email);
+    }
+
+    @Test
+    @Order(4)
     void getToken() throws Exception {
         testPost("/v1/auth", getToken);
     }
