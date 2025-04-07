@@ -32,11 +32,12 @@ public class CreateUsuarioDTO {
     private String email;
 
     @NotNull
-    private String senha;
-
-    @NotNull
     @Size(max = 14)
     private String cpf;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate dataNascimento;
 
     @NotNull
     @Size(max = 100)
@@ -45,10 +46,6 @@ public class CreateUsuarioDTO {
     @NotNull
     @Size(max = 100)
     private String empresa;
-
-    @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
 
     @NotNull
     @Size(max = 20)
@@ -61,11 +58,10 @@ public class CreateUsuarioDTO {
         this.nome = createUsuario.getNome();
         this.sobrenome = createUsuario.getSobrenome();
         this.email = createUsuario.getEmail();
-        this.senha = createUsuario.getSenha();
         this.cpf = createUsuario.getCpf();
+        this.dataNascimento = createUsuario.getDataNascimento();
         this.profissao = createUsuario.getProfissao();
         this.empresa = createUsuario.getEmpresa();
-        this.dataNascimento = createUsuario.getDataNascimento();
         this.telefone = createUsuario.getTelefone();
         this.estadoCivil = createUsuario.getEstadoCivil();
     }

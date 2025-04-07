@@ -37,10 +37,6 @@ public class CreateUsuario {
     private String email;
 
     @NotNull
-    @Column(name = "senha", columnDefinition = "TEXT", nullable = false)
-    private String senha;
-
-    @NotNull
     @Size(max = 14)
     @Column(name = "cpf", length = 14, unique = true, nullable = false)
     private String cpf;

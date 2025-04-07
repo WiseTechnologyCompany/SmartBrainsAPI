@@ -34,9 +34,6 @@ public class UsuarioDTO {
     private String email;
 
     @NotNull
-    private String senha;
-
-    @NotNull
     @Size(max = 14)
     private String cpf;
 
@@ -69,7 +66,6 @@ public class UsuarioDTO {
         this.nome = usuarios.getNome();
         this.sobrenome = usuarios.getSobrenome();
         this.email = usuarios.getEmail();
-        this.senha = usuarios.getSenha();
         this.cpf = usuarios.getCpf();
         this.profissao = usuarios.getProfissao();
         this.empresa = usuarios.getEmpresa();
