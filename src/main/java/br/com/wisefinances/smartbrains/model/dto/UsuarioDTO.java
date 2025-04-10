@@ -2,6 +2,7 @@ package br.com.wisefinances.smartbrains.model.dto;
 
 import br.com.wisefinances.smartbrains.model.entity.Usuarios;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioDTO {
 
     private Integer id;
@@ -74,5 +76,11 @@ public class UsuarioDTO {
         this.estadoCivil = usuarios.getEstadoCivil().getDescricao();
         this.situacaoCadastro = usuarios.getSituacaoCadastro().getDescricao();
         this.dataCadastro = usuarios.getDataCadastro();
+    }
+
+    public UsuarioDTO(String nome, String profissao, String empresa) {
+        this.nome = nome;
+        this.profissao = profissao;
+        this.empresa = empresa;
     }
 }

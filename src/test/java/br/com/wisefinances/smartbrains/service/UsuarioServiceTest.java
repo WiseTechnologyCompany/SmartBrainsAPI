@@ -53,6 +53,15 @@ class UsuarioServiceTest extends AbstractTest {
 
     @Test
     @Order(3)
+    void findUserInfoByEmail() {
+        String email = "teste@teste.com";
+        var usuario = usuarioService.findUsuarioInfoByEmail(email);
+
+        assertThat(usuario).isNotNull();
+    }
+
+    @Test
+    @Order(4)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var createUsuarioDTO = objectMapper.readValue(usuario, CreateUsuarioDTO.class);
@@ -63,7 +72,7 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void update() {
         Assertions.assertDoesNotThrow(() -> {
             var updateUsuarioDTO = objectMapper.readValue(usuario, CreateUsuarioDTO.class);
@@ -74,7 +83,7 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void delete() {
         Assertions.assertDoesNotThrow(() -> {
             usuarioService.delete(ID);

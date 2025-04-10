@@ -41,6 +41,11 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
         return new UsuarioDTO(usuarioRepository.getReferenceById(pId));
     }
 
+    public UsuarioDTO findUsuarioInfoByEmail(String pEmail) {
+        var userInfo = usuarioRepository.findByEmail(pEmail);
+        return new UsuarioDTO(userInfo.getNome(), userInfo.getProfissao(), userInfo.getEmpresa());
+    }
+
     @Override
     public MessagesResponseDTO save(CreateUsuarioDTO pCreateUsuarioDTO) {
         var usuario = modelMapper.map(pCreateUsuarioDTO, CreateUsuario.class);
