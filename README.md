@@ -40,6 +40,8 @@
 * [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=coverage)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
 
 * [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
+
+* [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
   
 * [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=WiseFinances_SmartBrainsAPI&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=WiseFinances_SmartBrainsAPI)
 
