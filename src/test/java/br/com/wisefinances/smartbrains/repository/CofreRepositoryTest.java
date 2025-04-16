@@ -1,8 +1,9 @@
 package br.com.wisefinances.smartbrains.repository;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.create.entity.CreateCofre;
-import br.com.wisefinances.smartbrains.repository.create.CreateCofreRepository;
+import br.com.wisefinances.smartbrains.model.entity.cofre.CreateCofre;
+import br.com.wisefinances.smartbrains.repository.cofre.CofreRepository;
+import br.com.wisefinances.smartbrains.repository.cofre.CreateCofreRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;

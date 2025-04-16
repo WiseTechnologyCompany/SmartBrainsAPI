@@ -2,11 +2,11 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateCofreDTO;
-import br.com.wisefinances.smartbrains.model.create.entity.CreateCofre;
-import br.com.wisefinances.smartbrains.model.dto.CofreDTO;
-import br.com.wisefinances.smartbrains.repository.CofreRepository;
-import br.com.wisefinances.smartbrains.repository.create.CreateCofreRepository;
+import br.com.wisefinances.smartbrains.model.dto.cofre.CreateCofreDTO;
+import br.com.wisefinances.smartbrains.model.entity.cofre.CreateCofre;
+import br.com.wisefinances.smartbrains.model.dto.cofre.CofreDTO;
+import br.com.wisefinances.smartbrains.repository.cofre.CofreRepository;
+import br.com.wisefinances.smartbrains.repository.cofre.CreateCofreRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

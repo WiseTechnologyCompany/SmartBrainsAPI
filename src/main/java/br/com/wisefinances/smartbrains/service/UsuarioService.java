@@ -3,12 +3,12 @@ package br.com.wisefinances.smartbrains.service;
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.enums.SituacaoCadastro;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
-import br.com.wisefinances.smartbrains.model.create.entity.CreateUsuario;
-import br.com.wisefinances.smartbrains.model.dto.UsuarioDTO;
-import br.com.wisefinances.smartbrains.repository.create.CreateUsuarioRepository;
-import br.com.wisefinances.smartbrains.repository.SituacaoCadastroRepository;
-import br.com.wisefinances.smartbrains.repository.UsuarioRepository;
+import br.com.wisefinances.smartbrains.model.dto.usuario.CreateUsuarioDTO;
+import br.com.wisefinances.smartbrains.model.entity.usuario.CreateUsuario;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioDTO;
+import br.com.wisefinances.smartbrains.repository.usuario.CreateUsuarioRepository;
+import br.com.wisefinances.smartbrains.repository.situacaocadastro.SituacaoCadastroRepository;
+import br.com.wisefinances.smartbrains.repository.usuario.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
 
     public UsuarioDTO findUsuarioInfoByEmail(String pEmail) {
         var userInfo = usuarioRepository.findByEmail(pEmail);
-        return new UsuarioDTO(userInfo.getNome(), userInfo.getProfissao(), userInfo.getEmpresa());
+        return new UsuarioDTO(userInfo.getId(), userInfo.getNome(), userInfo.getProfissao(), userInfo.getEmpresa());
     }
 
     @Override

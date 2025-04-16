@@ -2,8 +2,10 @@ package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateMovimentacaoDTO;
-import br.com.wisefinances.smartbrains.model.dto.MovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.MovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoDTO;
 import br.com.wisefinances.smartbrains.service.MovimentacaoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,6 +16,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Tag(name = "Movimentação")
@@ -30,8 +34,13 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovimentacaoDTO> findMovimentacaoById(@PathVariable Integer id) {
+    public ResponseEntity<MovimentacaoDTO> getMovimentacaoById(@PathVariable Integer id) {
         return ResponseEntity.ok(movimentacaoService.findById(id));
+    }
+    
+    @PostMapping("/user")
+    public ResponseEntity<List<UserTransactionsDTO>> getUserTransactions(@RequestBody @Valid UsuarioInfoDTO usuarioInfoDTO) {
+        return ResponseEntity.ok(movimentacaoService.findAllUserTransactions(usuarioInfoDTO.getEmail()));
     }
 
     @Transactional

@@ -2,14 +2,13 @@ package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
-import br.com.wisefinances.smartbrains.model.dto.UsuarioDTO;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateUsuarioDTO;
-import br.com.wisefinances.smartbrains.model.info.UsuarioInfoByEmailDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.CreateUsuarioDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoDTO;
 import br.com.wisefinances.smartbrains.service.UsuarioService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -32,13 +31,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable Integer id) {
+    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Integer id) {
         return ResponseEntity.ok(usuarioService.findById(id));
     }
 
     @PostMapping("/info")
-    public ResponseEntity<UsuarioDTO> findUsuarioInfoByEmail(@RequestBody @Valid UsuarioInfoByEmailDTO usuarioInfoByEmailDTO) {
-        return ResponseEntity.ok(usuarioService.findUsuarioInfoByEmail(usuarioInfoByEmailDTO.getEmail()));
+    public ResponseEntity<UsuarioDTO> getUsuarioInfoByEmail(@RequestBody @Valid UsuarioInfoDTO usuarioInfoDTO) {
+        return ResponseEntity.ok(usuarioService.findUsuarioInfoByEmail(usuarioInfoDTO.getEmail()));
     }
 
     @Transactional

@@ -1,7 +1,8 @@
 package br.com.wisefinances.smartbrains.repository;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.entity.TipoMovimentacao;
+import br.com.wisefinances.smartbrains.model.entity.tipomovimentacao.TipoMovimentacao;
+import br.com.wisefinances.smartbrains.repository.tipomovimentacao.TipoMovimentacaoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;

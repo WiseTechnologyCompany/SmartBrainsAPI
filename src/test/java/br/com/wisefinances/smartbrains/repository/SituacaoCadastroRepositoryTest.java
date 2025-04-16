@@ -1,7 +1,8 @@
 package br.com.wisefinances.smartbrains.repository;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.entity.SituacaoCadastro;
+import br.com.wisefinances.smartbrains.model.entity.situacaocadastro.SituacaoCadastro;
+import br.com.wisefinances.smartbrains.repository.situacaocadastro.SituacaoCadastroRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;

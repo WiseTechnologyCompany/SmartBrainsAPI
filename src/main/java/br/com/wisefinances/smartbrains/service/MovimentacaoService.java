@@ -2,11 +2,12 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateMovimentacaoDTO;
-import br.com.wisefinances.smartbrains.model.create.entity.CreateMovimentacao;
-import br.com.wisefinances.smartbrains.model.dto.MovimentacaoDTO;
-import br.com.wisefinances.smartbrains.repository.MovimentacaoRepository;
-import br.com.wisefinances.smartbrains.repository.create.CreateMovimentacaoRepository;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.MovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
+import br.com.wisefinances.smartbrains.model.entity.movimentacao.CreateMovimentacao;
+import br.com.wisefinances.smartbrains.repository.movimentacao.MovimentacaoRepository;
+import br.com.wisefinances.smartbrains.repository.movimentacao.CreateMovimentacaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovimentacaoService extends AbstractSpecificService<MovimentacaoDTO, CreateMovimentacaoDTO, MessagesResponseDTO> {
 
     @Autowired
     ModelMapper modelMapper;
+
+    @Autowired
+    UsuarioService usuarioService;
 
     @Autowired
     MovimentacaoRepository movimentacaoRepository;
@@ -34,6 +40,11 @@ public class MovimentacaoService extends AbstractSpecificService<MovimentacaoDTO
     @Override
     public MovimentacaoDTO findById(Integer pId) {
         return new MovimentacaoDTO(movimentacaoRepository.getReferenceById(pId));
+    }
+
+    public List<UserTransactionsDTO> findAllUserTransactions(String pEmail) {
+      int userId = usuarioService.findUsuarioInfoByEmail(pEmail).getId();
+      return movimentacaoRepository.findAllUserTransactionsByUserId(userId).stream().map(UserTransactionsDTO::new).toList();
     }
 
     @Override

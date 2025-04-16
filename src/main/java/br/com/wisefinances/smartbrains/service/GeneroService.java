@@ -2,9 +2,9 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.dto.GeneroDTO;
-import br.com.wisefinances.smartbrains.model.entity.Genero;
-import br.com.wisefinances.smartbrains.repository.GeneroRepository;
+import br.com.wisefinances.smartbrains.model.dto.genero.GeneroDTO;
+import br.com.wisefinances.smartbrains.model.entity.genero.Genero;
+import br.com.wisefinances.smartbrains.repository.genero.GeneroRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

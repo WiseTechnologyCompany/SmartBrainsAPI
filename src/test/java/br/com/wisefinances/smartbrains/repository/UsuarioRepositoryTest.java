@@ -1,8 +1,9 @@
 package br.com.wisefinances.smartbrains.repository;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.create.entity.CreateUsuario;
-import br.com.wisefinances.smartbrains.repository.create.CreateUsuarioRepository;
+import br.com.wisefinances.smartbrains.model.entity.usuario.CreateUsuario;
+import br.com.wisefinances.smartbrains.repository.usuario.CreateUsuarioRepository;
+import br.com.wisefinances.smartbrains.repository.usuario.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;

@@ -2,9 +2,9 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.dto.SituacaoCadastroDTO;
-import br.com.wisefinances.smartbrains.model.entity.SituacaoCadastro;
-import br.com.wisefinances.smartbrains.repository.SituacaoCadastroRepository;
+import br.com.wisefinances.smartbrains.model.dto.situacaocadastro.SituacaoCadastroDTO;
+import br.com.wisefinances.smartbrains.model.entity.situacaocadastro.SituacaoCadastro;
+import br.com.wisefinances.smartbrains.repository.situacaocadastro.SituacaoCadastroRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

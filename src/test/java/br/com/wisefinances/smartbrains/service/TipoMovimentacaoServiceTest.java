@@ -1,7 +1,7 @@
 package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.dto.TipoMovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.tipomovimentacao.TipoMovimentacaoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

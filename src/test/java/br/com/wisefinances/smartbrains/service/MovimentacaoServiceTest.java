@@ -1,7 +1,8 @@
 package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.create.dto.CreateMovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -54,6 +57,16 @@ class MovimentacaoServiceTest extends AbstractTest {
 
     @Test
     @Order(3)
+    void findAllUserTransactions() {
+        Assertions.assertDoesNotThrow(() -> {
+            String email = "teste@teste.com";
+            List<UserTransactionsDTO> userTransactions = movimentacaoService.findAllUserTransactions(email);
+            assertThat(userTransactions).isNotEmpty();
+        });
+    }
+
+    @Test
+    @Order(4)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var createMovimentacaoDTO = objectMapper.readValue(movimentacao, CreateMovimentacaoDTO.class);
@@ -66,7 +79,7 @@ class MovimentacaoServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void update() {
         Assertions.assertDoesNotThrow(() -> {
             var updateMovimentacaoDTO = objectMapper.readValue(movimentacao, CreateMovimentacaoDTO.class);
@@ -77,7 +90,7 @@ class MovimentacaoServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void delete() {
         Assertions.assertDoesNotThrow(() -> {
             movimentacaoService.delete(ID);

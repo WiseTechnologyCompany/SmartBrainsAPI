@@ -1,7 +1,7 @@
 package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.dto.EstadoCivilDTO;
+import br.com.wisefinances.smartbrains.model.dto.estadocivil.EstadoCivilDTO;
 import br.com.wisefinances.smartbrains.service.EstadoCivilService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;

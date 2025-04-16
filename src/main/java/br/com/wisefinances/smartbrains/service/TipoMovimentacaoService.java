@@ -2,9 +2,9 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.dto.TipoMovimentacaoDTO;
-import br.com.wisefinances.smartbrains.model.entity.TipoMovimentacao;
-import br.com.wisefinances.smartbrains.repository.TipoMovimentacaoRepository;
+import br.com.wisefinances.smartbrains.model.dto.tipomovimentacao.TipoMovimentacaoDTO;
+import br.com.wisefinances.smartbrains.model.entity.tipomovimentacao.TipoMovimentacao;
+import br.com.wisefinances.smartbrains.repository.tipomovimentacao.TipoMovimentacaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

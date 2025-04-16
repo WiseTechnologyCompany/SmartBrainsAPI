@@ -1,7 +1,7 @@
 package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
-import br.com.wisefinances.smartbrains.model.dto.SituacaoCadastroDTO;
+import br.com.wisefinances.smartbrains.model.dto.situacaocadastro.SituacaoCadastroDTO;
 import br.com.wisefinances.smartbrains.service.SituacaoCadastroService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,7 +27,7 @@ public class SituacaoCadastroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SituacaoCadastroDTO> findSituacaoCadastroById(@PathVariable Integer id) {
+    public ResponseEntity<SituacaoCadastroDTO> getSituacaoCadastroById(@PathVariable Integer id) {
         return ResponseEntity.ok(situacaoCadastroService.findById(id));
     }
 

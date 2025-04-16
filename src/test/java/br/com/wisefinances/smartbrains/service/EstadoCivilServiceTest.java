@@ -1,7 +1,7 @@
 package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
-import br.com.wisefinances.smartbrains.model.dto.EstadoCivilDTO;
+import br.com.wisefinances.smartbrains.model.dto.estadocivil.EstadoCivilDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
