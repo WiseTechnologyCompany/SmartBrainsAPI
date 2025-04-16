@@ -58,6 +58,15 @@ class MovimentacaoRepositoryTest extends AbstractTest {
 
     @Test
     @Order(3)
+    void findAllUserTransactionsByUserId() {
+        Assertions.assertDoesNotThrow(() -> {
+            var movimentacao = movimentacaoRepository.findAllUserTransactionsByUserId(1);
+            assertThat(movimentacao).isNotEmpty();
+        });
+    }
+
+    @Test
+    @Order(4)
     void save() {
         Assertions.assertDoesNotThrow(() -> {
             var movimentacaoEntity = objectMapper.readValue(movimentacao, CreateMovimentacao.class);
@@ -70,7 +79,7 @@ class MovimentacaoRepositoryTest extends AbstractTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void findByIdException() {
         int id = 999;
         var movimentacao = movimentacaoRepository.findById(id);
