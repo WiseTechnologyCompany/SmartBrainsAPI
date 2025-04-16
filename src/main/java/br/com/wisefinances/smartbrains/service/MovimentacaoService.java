@@ -6,8 +6,8 @@ import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacao
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.MovimentacaoDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
 import br.com.wisefinances.smartbrains.model.entity.movimentacao.CreateMovimentacao;
-import br.com.wisefinances.smartbrains.repository.movimentacao.MovimentacaoRepository;
 import br.com.wisefinances.smartbrains.repository.movimentacao.CreateMovimentacaoRepository;
+import br.com.wisefinances.smartbrains.repository.movimentacao.MovimentacaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

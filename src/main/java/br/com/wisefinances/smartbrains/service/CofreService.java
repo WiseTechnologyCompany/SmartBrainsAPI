@@ -2,9 +2,9 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
+import br.com.wisefinances.smartbrains.model.dto.cofre.CofreDTO;
 import br.com.wisefinances.smartbrains.model.dto.cofre.CreateCofreDTO;
 import br.com.wisefinances.smartbrains.model.entity.cofre.CreateCofre;
-import br.com.wisefinances.smartbrains.model.dto.cofre.CofreDTO;
 import br.com.wisefinances.smartbrains.repository.cofre.CofreRepository;
 import br.com.wisefinances.smartbrains.repository.cofre.CreateCofreRepository;
 import org.modelmapper.ModelMapper;

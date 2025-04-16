@@ -1,6 +1,7 @@
 package br.com.wisefinances.smartbrains.domain.abstracts;
 
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component

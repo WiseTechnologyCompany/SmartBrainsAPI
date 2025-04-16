@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.infra.security.model.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Getter

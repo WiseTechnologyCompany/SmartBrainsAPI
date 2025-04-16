@@ -2,8 +2,8 @@ package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
-import br.com.wisefinances.smartbrains.model.dto.cofre.CreateCofreDTO;
 import br.com.wisefinances.smartbrains.model.dto.cofre.CofreDTO;
+import br.com.wisefinances.smartbrains.model.dto.cofre.CreateCofreDTO;
 import br.com.wisefinances.smartbrains.service.CofreService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
