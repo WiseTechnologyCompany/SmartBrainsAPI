@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserTransactionsDTO {
+public class UserTransactionsResponseDTO {
 
     @JsonProperty("id")
     private Integer transactionId;
@@ -31,7 +31,7 @@ public class UserTransactionsDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate transactionDate;
 
-    public UserTransactionsDTO(Movimentacao movimentacao) {
+    public UserTransactionsResponseDTO(Movimentacao movimentacao) {
         this.transactionId = movimentacao.getId();
         this.transactionType = movimentacao.getTipoMovimentacao().getDescricao();
         this.transactionDescription = movimentacao.getDescricao();

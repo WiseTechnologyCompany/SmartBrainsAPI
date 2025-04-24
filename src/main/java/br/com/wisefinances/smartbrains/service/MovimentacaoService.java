@@ -4,7 +4,9 @@ import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacaoDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.MovimentacaoDTO;
-import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.TotalTransactionsResponseDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsResponseDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoRequestDTO;
 import br.com.wisefinances.smartbrains.model.entity.movimentacao.CreateMovimentacao;
 import br.com.wisefinances.smartbrains.repository.movimentacao.CreateMovimentacaoRepository;
 import br.com.wisefinances.smartbrains.repository.movimentacao.MovimentacaoRepository;
@@ -15,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -42,9 +46,38 @@ public class MovimentacaoService extends AbstractSpecificService<MovimentacaoDTO
         return new MovimentacaoDTO(movimentacaoRepository.getReferenceById(pId));
     }
 
-    public List<UserTransactionsDTO> findAllUserTransactions(String pEmail) {
+    public List<UserTransactionsResponseDTO> findAllUserTransactions(String pEmail) {
       int userId = usuarioService.findUsuarioInfoByEmail(pEmail).getId();
-      return movimentacaoRepository.findAllUserTransactionsByUserId(userId).stream().map(UserTransactionsDTO::new).toList();
+      return movimentacaoRepository.findAllUserTransactionsByUserId(userId).stream().map(UserTransactionsResponseDTO::new).toList();
+    }
+
+    public TotalTransactionsResponseDTO sumUserTotalTransactions(String pEmail) {
+        int userId = usuarioService.findUsuarioInfoByEmail(pEmail).getId();
+
+        BigDecimal totalEntrada = movimentacaoRepository.sumTotalEntrada(userId);
+        BigDecimal totalGastosFixos = movimentacaoRepository.sumTotalGastosFixos(userId);
+        BigDecimal totalDespesas = movimentacaoRepository.sumTotalDespesas(userId);
+
+        return new TotalTransactionsResponseDTO(totalEntrada, totalGastosFixos, totalDespesas);
+    }
+
+    public TotalTransactionsResponseDTO sumUserTotalTransactionsByDate(UsuarioInfoRequestDTO pUsuarioInfoRequestDTO) {
+
+        if (pUsuarioInfoRequestDTO.getDataFim() == null) {
+            pUsuarioInfoRequestDTO.setDataFim(LocalDate.now());
+        }
+
+        int userId = usuarioService.findUsuarioInfoByEmail(pUsuarioInfoRequestDTO.getEmail()).getId();
+
+        BigDecimal totalEntrada = movimentacaoRepository.sumTotalEntradaByDate(userId, pUsuarioInfoRequestDTO.getDataInicio(), pUsuarioInfoRequestDTO.getDataFim());
+        BigDecimal totalGastosFixos = movimentacaoRepository.sumTotalGastosFixosByDate(userId, pUsuarioInfoRequestDTO.getDataInicio(), pUsuarioInfoRequestDTO.getDataFim());
+        BigDecimal totalDespesas = movimentacaoRepository.sumTotalDespesasByDate(userId, pUsuarioInfoRequestDTO.getDataInicio(), pUsuarioInfoRequestDTO.getDataFim());
+
+        return new TotalTransactionsResponseDTO(
+                totalEntrada != null ? totalEntrada : BigDecimal.ZERO,
+                totalGastosFixos != null ? totalGastosFixos : BigDecimal.ZERO,
+                totalDespesas != null ? totalDespesas : BigDecimal.ZERO
+        );
     }
 
     @Override

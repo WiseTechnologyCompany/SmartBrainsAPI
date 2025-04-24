@@ -2,7 +2,7 @@ package br.com.wisefinances.smartbrains.service;
 
 import br.com.wisefinances.smartbrains.config.AbstractTest;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacaoDTO;
-import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,7 +61,7 @@ class MovimentacaoServiceTest extends AbstractTest {
     void findAllUserTransactions() {
         Assertions.assertDoesNotThrow(() -> {
             String email = "teste@teste.com";
-            List<UserTransactionsDTO> userTransactions = movimentacaoService.findAllUserTransactions(email);
+            List<UserTransactionsResponseDTO> userTransactions = movimentacaoService.findAllUserTransactions(email);
             assertThat(userTransactions).isNotEmpty();
         });
     }

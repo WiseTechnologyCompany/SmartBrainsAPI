@@ -4,8 +4,9 @@ import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacaoDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.MovimentacaoDTO;
-import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsDTO;
-import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.TotalTransactionsResponseDTO;
+import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsResponseDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoRequestDTO;
 import br.com.wisefinances.smartbrains.service.MovimentacaoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,9 +39,19 @@ public class MovimentacaoController {
         return ResponseEntity.ok(movimentacaoService.findById(id));
     }
     
-    @PostMapping("/user")
-    public ResponseEntity<List<UserTransactionsDTO>> getUserTransactions(@RequestBody @Valid UsuarioInfoDTO usuarioInfoDTO) {
-        return ResponseEntity.ok(movimentacaoService.findAllUserTransactions(usuarioInfoDTO.getEmail()));
+    @PostMapping("/user/table")
+    public ResponseEntity<List<UserTransactionsResponseDTO>> getAllUserTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(movimentacaoService.findAllUserTransactions(usuarioInfoRequestDTO.getEmail()));
+    }
+
+    @PostMapping("/user/card")
+    public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactions(usuarioInfoRequestDTO.getEmail()));
+    }
+
+    @PostMapping("/user/card/date")
+    public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactionsByDate(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactionsByDate(usuarioInfoRequestDTO));
     }
 
     @Transactional

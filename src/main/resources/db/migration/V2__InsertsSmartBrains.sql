@@ -2,11 +2,6 @@ INSERT INTO situacao_cadastro (descricao) VALUES
     ('ATIVO'),
     ('EXCLUIDO');
 
-INSERT INTO generos (descricao) VALUES
-    ('MASCULINO'),
-    ('FEMININO'),
-    ('OUTROS');
-
 INSERT INTO estado_civil (descricao) VALUES
     ('SOLTEIRO'),
     ('UNIAO ESTAVEL'),
@@ -16,7 +11,8 @@ INSERT INTO estado_civil (descricao) VALUES
 
 INSERT INTO tipo_movimentacao (descricao) VALUES
      ('ENTRADA'),
-     ('SAIDA');
+     ('GASTOS FIXOS'),
+     ('DESPESAS');
 
 INSERT INTO usuarios (nome, sobrenome, email, cpf, profissao, empresa, data_nascimento, telefone, id_estadocivil, id_situacaocadastro) VALUES
      ('Carlos', 'Silva', 'carlos@email.com', '123.456.789-00', 'Engenheiro', 'TechCorp', '1990-05-15', '(11) 91234-5678',  1,1 ),

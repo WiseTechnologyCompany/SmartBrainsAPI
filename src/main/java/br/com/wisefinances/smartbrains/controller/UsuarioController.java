@@ -4,7 +4,7 @@ import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioDTO;
-import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoDTO;
+import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoRequestDTO;
 import br.com.wisefinances.smartbrains.service.UsuarioService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,8 +36,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/info")
-    public ResponseEntity<UsuarioDTO> getUsuarioInfoByEmail(@RequestBody @Valid UsuarioInfoDTO usuarioInfoDTO) {
-        return ResponseEntity.ok(usuarioService.findUsuarioInfoByEmail(usuarioInfoDTO.getEmail()));
+    public ResponseEntity<UsuarioDTO> getUsuarioInfoByEmail(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(usuarioService.findUsuarioInfoByEmail(usuarioInfoRequestDTO.getEmail()));
     }
 
     @Transactional
