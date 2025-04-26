@@ -38,21 +38,6 @@ public class MovimentacaoController {
     public ResponseEntity<MovimentacaoDTO> getMovimentacaoById(@PathVariable Integer id) {
         return ResponseEntity.ok(movimentacaoService.findById(id));
     }
-    
-    @PostMapping("/user/table")
-    public ResponseEntity<List<UserTransactionsResponseDTO>> getAllUserTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
-        return ResponseEntity.ok(movimentacaoService.findAllUserTransactions(usuarioInfoRequestDTO.getEmail()));
-    }
-
-    @PostMapping("/user/card")
-    public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
-        return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactions(usuarioInfoRequestDTO.getEmail()));
-    }
-
-    @PostMapping("/user/card/date")
-    public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactionsByDate(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
-        return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactionsByDate(usuarioInfoRequestDTO));
-    }
 
     @Transactional
     @PostMapping
@@ -70,5 +55,20 @@ public class MovimentacaoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<MessagesResponseDTO> deleteMovimentacao(@PathVariable Integer id) {
         return ResponseEntity.ok(movimentacaoService.delete(id));
+    }
+
+    @PostMapping("/user/table")
+    public ResponseEntity<List<UserTransactionsResponseDTO>> getAllUserTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(movimentacaoService.findAllUserTransactions(usuarioInfoRequestDTO.getEmail()));
+    }
+
+    @PostMapping("/user/card")
+    public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactions(usuarioInfoRequestDTO.getEmail()));
+    }
+
+    @PostMapping("/user/card/date")
+    public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactionsByDate(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
+        return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactionsByDate(usuarioInfoRequestDTO));
     }
 }

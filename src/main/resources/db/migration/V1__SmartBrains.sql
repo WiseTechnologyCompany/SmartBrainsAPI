@@ -13,6 +13,12 @@ CREATE TABLE IF NOT EXISTS tipo_movimentacao (
     descricao VARCHAR(50) NOT NULL UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS tipo_categoria (
+     id SERIAL PRIMARY KEY,
+     descricao VARCHAR(50) NOT NULL UNIQUE
+);
+
+
 CREATE TABLE IF NOT EXISTS usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -30,26 +36,18 @@ CREATE TABLE IF NOT EXISTS usuarios (
     FOREIGN KEY (id_situacaocadastro) REFERENCES situacao_cadastro(id)
 );
 
-CREATE TABLE IF NOT EXISTS cofre (
-    id SERIAL PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    id_tipomovimentacao INT NOT NULL,
-    valor DECIMAL(11,2) NOT NULL,
-    observacao TEXT,
-    data_criacao DATE DEFAULT CURRENT_DATE,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-    FOREIGN KEY (id_tipomovimentacao) REFERENCES tipo_movimentacao(id)
-);
-
 CREATE TABLE IF NOT EXISTS movimentacao (
     id SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL,
     id_tipomovimentacao INT NOT NULL,
-    descricao TEXT,
+    id_tipocategoria INT NOT NULL,
+    descricao TEXT NOT NULL,
+    observacao TEXT,
     valor DECIMAL(11,2) NOT NULL,
     data_criacao DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-    FOREIGN KEY (id_tipomovimentacao) REFERENCES tipo_movimentacao(id)
+    FOREIGN KEY (id_tipomovimentacao) REFERENCES tipo_movimentacao(id),
+    FOREIGN KEY (id_tipocategoria) REFERENCES tipo_categoria(id)
 );
 
 CREATE TABLE IF NOT EXISTS autenticacao(

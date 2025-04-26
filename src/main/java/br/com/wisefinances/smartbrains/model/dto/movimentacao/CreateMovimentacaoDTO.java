@@ -8,14 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateMovimentacaoDTO {
-
-    private Integer id;
 
     @NotNull
     private Integer usuario;
@@ -24,15 +23,25 @@ public class CreateMovimentacaoDTO {
     private Integer tipoMovimentacao;
 
     @NotNull
-    private BigDecimal valor;
+    private Integer tipoCategoria;
 
+    @NotNull
     private String descricao;
 
+    private String observacao;
+
+    @NotNull
+    private BigDecimal valor;
+
+    private LocalDate dataCriacao;
+
     public CreateMovimentacaoDTO(CreateMovimentacao createMovimentacao) {
-        this.id = createMovimentacao.getId();
         this.usuario = createMovimentacao.getUsuario();
         this.tipoMovimentacao = createMovimentacao.getTipoMovimentacao();
-        this.valor = createMovimentacao.getValor();
+        this.tipoCategoria = createMovimentacao.getTipoCategoria();
         this.descricao = createMovimentacao.getDescricao();
+        this.observacao = createMovimentacao.getObservacao();
+        this.valor = createMovimentacao.getValor();
+        this.dataCriacao = createMovimentacao.getDataCriacao();
     }
 }
