@@ -55,6 +55,10 @@ public class AutenticacaoService implements UserDetailsService {
         return new TokenResponseDTO(token);
     }
 
+    public void updateAuthenticationEmail(String pNewEmail, String pOldEmail) {
+        autenticacaoRepository.updateEmail(pNewEmail, pOldEmail);
+    }
+
     private void validateAuthentication(AutenticacaoDTO autenticacaoDTO) {
         checkEmail(autenticacaoDTO.getEmail());
         encryptPassword(autenticacaoDTO);

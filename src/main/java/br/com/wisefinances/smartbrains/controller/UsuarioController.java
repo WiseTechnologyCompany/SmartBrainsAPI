@@ -31,8 +31,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Integer id) {
-        return ResponseEntity.ok(usuarioService.findById(id));
+    public ResponseEntity<CreateUsuarioDTO> getUsuarioById(@PathVariable Integer id) {
+        return ResponseEntity.ok(usuarioService.findUserById(id));
     }
 
     @PostMapping("/info")

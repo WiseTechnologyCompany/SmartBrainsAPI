@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.service;
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.enums.SituacaoCadastro;
+import br.com.wisefinances.smartbrains.infra.security.service.AutenticacaoService;
 import br.com.wisefinances.smartbrains.model.dto.usuario.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioDTO;
 import br.com.wisefinances.smartbrains.model.entity.usuario.CreateUsuario;
@@ -26,6 +27,9 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
     UsuarioRepository usuarioRepository;
 
     @Autowired
+    AutenticacaoService autenticacaoService;
+
+    @Autowired
     CreateUsuarioRepository createUsuarioRepository;
 
     @Autowired
@@ -39,6 +43,10 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
     @Override
     public UsuarioDTO findById(Integer pId) {
         return new UsuarioDTO(usuarioRepository.getReferenceById(pId));
+    }
+
+    public CreateUsuarioDTO findUserById(Integer pId) {
+        return new CreateUsuarioDTO(createUsuarioRepository.getReferenceById(pId));
     }
 
     public UsuarioDTO findUsuarioInfoByEmail(String pEmail) {
@@ -56,18 +64,23 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
     @Override
     public CreateUsuarioDTO update(Integer pId, CreateUsuarioDTO pCreateUsuarioDTO) {
         var usuario = createUsuarioRepository.getReferenceById(pId);
+
+        if (!usuario.getEmail().equalsIgnoreCase(pCreateUsuarioDTO.getEmail())) {
+            autenticacaoService.updateAuthenticationEmail(pCreateUsuarioDTO.getEmail(), usuario.getEmail());
+        }
+
         BeanUtils.copyProperties(pCreateUsuarioDTO, usuario, "id");
         return new CreateUsuarioDTO(createUsuarioRepository.save(usuario));
     }
 
     @Override
     public MessagesResponseDTO delete(Integer pId) {
-            var usuario = usuarioRepository.getReferenceById(pId);
-            var situacaoExcluido = situacaoCadastroRepository.getReferenceById(SituacaoCadastro.EXCLUIDO.getId());
+        var usuario = usuarioRepository.getReferenceById(pId);
+        var situacaoExcluido = situacaoCadastroRepository.getReferenceById(SituacaoCadastro.EXCLUIDO.getId());
 
-            usuario.setSituacaoCadastro(situacaoExcluido);
+        usuario.setSituacaoCadastro(situacaoExcluido);
 
-            new UsuarioDTO(usuarioRepository.save(usuario));
-            return MessagesResponseDTO.deleteSucessResponseDTO;
+        new UsuarioDTO(usuarioRepository.save(usuario));
+        return MessagesResponseDTO.deleteSucessResponseDTO;
     }
 }

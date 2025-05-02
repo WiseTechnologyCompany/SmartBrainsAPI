@@ -23,7 +23,7 @@ class MovimentacaoControllerTest extends AbstractControllerTest {
             movimentacao = new String(Files.readAllBytes(Paths.get("src/test/resources/movimentacao/movimentacao.json")));
         }
         if (email == null) {
-            email = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/UsuarioEmail.json")));
+            email = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/usuarioEmail.json")));
         }
     }
 
@@ -41,25 +41,37 @@ class MovimentacaoControllerTest extends AbstractControllerTest {
 
     @Test
     @Order(3)
-    void getUserTransactions() throws Exception {
-        testPostStatusOk("/v1/movimentacao/user", email);
-    }
-
-    @Test
-    @Order(4)
     void saveTipoMovimentacao() throws Exception {
         testPost("/v1/movimentacao", movimentacao);
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     void updateTipoMovimentacao() throws Exception {
         testPatch("/v1/movimentacao/1", movimentacao);
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     void deleteTipoMovimentacao() throws Exception {
         testDelete("/v1/movimentacao/1");
+    }
+
+    @Test
+    @Order(6)
+    void getAllUserTransactionsTest() throws Exception {
+        testPostStatusOk("/v1/movimentacao/user/table", email);
+    }
+
+    @Test
+    @Order(6)
+    void getUserTotalTransactionsTest() throws Exception {
+        testPostStatusOk("/v1/movimentacao/user/card", email);
+    }
+
+    @Test
+    @Order(6)
+    void getUserTotalTransactionsByDateTest() throws Exception {
+        testPostStatusOk("/v1/movimentacao/user/card/date", email);
     }
 }

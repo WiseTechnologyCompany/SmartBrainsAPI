@@ -1,3 +1,8 @@
+CREATE TABLE IF NOT EXISTS generos (
+   id SERIAL PRIMARY KEY,
+   descricao VARCHAR(50) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS estado_civil (
     id SERIAL PRIMARY KEY,
     descricao VARCHAR(50) NOT NULL UNIQUE
@@ -18,7 +23,6 @@ CREATE TABLE IF NOT EXISTS tipo_categoria (
      descricao VARCHAR(50) NOT NULL UNIQUE
 );
 
-
 CREATE TABLE IF NOT EXISTS usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -34,6 +38,17 @@ CREATE TABLE IF NOT EXISTS usuarios (
     data_cadastro DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (id_estadocivil) REFERENCES estado_civil(id),
     FOREIGN KEY (id_situacaocadastro) REFERENCES situacao_cadastro(id)
+);
+
+CREATE TABLE IF NOT EXISTS cofre (
+    id SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_tipomovimentacao INT NOT NULL,
+    valor DECIMAL(11,2) NOT NULL,
+    observacao TEXT,
+    data_criacao DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id_tipomovimentacao) REFERENCES tipo_movimentacao(id)
 );
 
 CREATE TABLE IF NOT EXISTS movimentacao (

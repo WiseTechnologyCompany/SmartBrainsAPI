@@ -23,7 +23,7 @@ class UsuarioControllerTest extends AbstractControllerTest {
             usuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/usuario.json")));
         }
         if (email == null) {
-            email = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/UsuarioEmail.json")));
+            email = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/usuarioEmail.json")));
         }
     }
 

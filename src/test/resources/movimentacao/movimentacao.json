@@ -1,6 +1,8 @@
 {
   "usuario": 1,
   "tipoMovimentacao": 1,
-  "valor": 999.99,
-  "descricao": "TESTE"
+  "tipoCategoria": 1,
+  "descricao": "TESTE",
+  "observacao": "TESTE",
+  "valor": 999.99
 }
