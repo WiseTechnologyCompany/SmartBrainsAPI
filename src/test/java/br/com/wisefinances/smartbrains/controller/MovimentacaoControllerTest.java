@@ -68,10 +68,4 @@ class MovimentacaoControllerTest extends AbstractControllerTest {
     void getUserTotalTransactionsTest() throws Exception {
         testPostStatusOk("/v1/movimentacao/user/card", email);
     }
-
-    @Test
-    @Order(6)
-    void getUserTotalTransactionsByDateTest() throws Exception {
-        testPostStatusOk("/v1/movimentacao/user/card/date", email);
-    }
 }

@@ -61,25 +61,6 @@ public class MovimentacaoService extends AbstractSpecificService<MovimentacaoDTO
         return new TotalTransactionsResponseDTO(totalEntrada, totalGastosFixos, totalDespesas);
     }
 
-    public TotalTransactionsResponseDTO sumUserTotalTransactionsByDate(UsuarioInfoRequestDTO pUsuarioInfoRequestDTO) {
-
-        if (pUsuarioInfoRequestDTO.getDataFim() == null) {
-            pUsuarioInfoRequestDTO.setDataFim(LocalDate.now());
-        }
-
-        int userId = usuarioService.findUsuarioInfoByEmail(pUsuarioInfoRequestDTO.getEmail()).getId();
-
-        BigDecimal totalEntrada = movimentacaoRepository.sumTotalEntradaByDate(userId, pUsuarioInfoRequestDTO.getDataInicio(), pUsuarioInfoRequestDTO.getDataFim());
-        BigDecimal totalGastosFixos = movimentacaoRepository.sumTotalGastosFixosByDate(userId, pUsuarioInfoRequestDTO.getDataInicio(), pUsuarioInfoRequestDTO.getDataFim());
-        BigDecimal totalDespesas = movimentacaoRepository.sumTotalDespesasByDate(userId, pUsuarioInfoRequestDTO.getDataInicio(), pUsuarioInfoRequestDTO.getDataFim());
-
-        return new TotalTransactionsResponseDTO(
-                totalEntrada != null ? totalEntrada : BigDecimal.ZERO,
-                totalGastosFixos != null ? totalGastosFixos : BigDecimal.ZERO,
-                totalDespesas != null ? totalDespesas : BigDecimal.ZERO
-        );
-    }
-
     @Override
     public MessagesResponseDTO save(CreateMovimentacaoDTO pCreateMovimentacaoDTO) {
         var movimentacao = modelMapper.map(pCreateMovimentacaoDTO, CreateMovimentacao.class);
