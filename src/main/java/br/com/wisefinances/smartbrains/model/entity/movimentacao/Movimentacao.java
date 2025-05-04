@@ -1,5 +1,6 @@
 package br.com.wisefinances.smartbrains.model.entity.movimentacao;
 
+import br.com.wisefinances.smartbrains.model.entity.categoria.Categoria;
 import br.com.wisefinances.smartbrains.model.entity.tipomovimentacao.TipoMovimentacao;
 import br.com.wisefinances.smartbrains.model.entity.usuario.Usuarios;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,6 +32,11 @@ public class Movimentacao {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tipomovimentacao", nullable = false)
     private TipoMovimentacao tipoMovimentacao;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_tipocategoria", nullable = false)
+    private Categoria tipoCategoria;
 
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;

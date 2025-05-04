@@ -7,8 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Locale;
 
 @Data
 @NoArgsConstructor
@@ -21,11 +22,14 @@ public class UserTransactionsResponseDTO {
     @JsonProperty("tipoMovimentacao")
     private String transactionType;
 
+    @JsonProperty("tipoCategoria")
+    private String transactionCategory;
+
     @JsonProperty("descricao")
     private String transactionDescription;
 
     @JsonProperty("valor")
-    private BigDecimal transactionValue;
+    private String transactionValue;
 
     @JsonProperty("dataCriacao")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -34,8 +38,12 @@ public class UserTransactionsResponseDTO {
     public UserTransactionsResponseDTO(Movimentacao movimentacao) {
         this.transactionId = movimentacao.getId();
         this.transactionType = movimentacao.getTipoMovimentacao().getDescricao();
+        this.transactionCategory = movimentacao.getTipoCategoria().getDescricao();
         this.transactionDescription = movimentacao.getDescricao();
-        this.transactionValue = movimentacao.getValor();
+
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.of("pt", "BR"));
+        this.transactionValue = numberFormat.format(movimentacao.getValor());
+
         this.transactionDate = movimentacao.getDataCriacao();
     }
 }

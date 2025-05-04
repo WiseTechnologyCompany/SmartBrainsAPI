@@ -6,7 +6,6 @@ import br.com.wisefinances.smartbrains.model.dto.movimentacao.CreateMovimentacao
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.MovimentacaoDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.TotalTransactionsResponseDTO;
 import br.com.wisefinances.smartbrains.model.dto.movimentacao.UserTransactionsResponseDTO;
-import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioInfoRequestDTO;
 import br.com.wisefinances.smartbrains.model.entity.movimentacao.CreateMovimentacao;
 import br.com.wisefinances.smartbrains.repository.movimentacao.CreateMovimentacaoRepository;
 import br.com.wisefinances.smartbrains.repository.movimentacao.MovimentacaoRepository;
@@ -18,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
