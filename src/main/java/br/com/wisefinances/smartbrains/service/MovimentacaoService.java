@@ -44,6 +44,10 @@ public class MovimentacaoService extends AbstractSpecificService<MovimentacaoDTO
         return new MovimentacaoDTO(movimentacaoRepository.getReferenceById(pId));
     }
 
+    public CreateMovimentacaoDTO findTransactionById(Integer pId) {
+        return new CreateMovimentacaoDTO(createMovimentacaoRepository.getReferenceById(pId));
+    }
+
     public List<UserTransactionsResponseDTO> findAllUserTransactions(String pEmail) {
       int userId = usuarioService.findUsuarioInfoByEmail(pEmail).getId();
       return movimentacaoRepository.findAllUserTransactionsByUserId(userId).stream().map(UserTransactionsResponseDTO::new).toList();

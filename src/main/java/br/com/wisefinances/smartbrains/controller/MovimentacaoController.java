@@ -66,4 +66,9 @@ public class MovimentacaoController {
     public ResponseEntity<TotalTransactionsResponseDTO> getUserTotalTransactions(@RequestBody @Valid UsuarioInfoRequestDTO usuarioInfoRequestDTO) {
         return ResponseEntity.ok(movimentacaoService.sumUserTotalTransactions(usuarioInfoRequestDTO.getEmail()));
     }
+
+    @GetMapping("/edit/{id}")
+    public ResponseEntity<CreateMovimentacaoDTO> getTransactionById(@PathVariable Integer id) {
+        return ResponseEntity.ok(movimentacaoService.findTransactionById(id));
+    }
 }
