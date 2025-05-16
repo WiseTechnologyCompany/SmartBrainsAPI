@@ -65,8 +65,14 @@ CREATE TABLE IF NOT EXISTS movimentacao (
     FOREIGN KEY (id_tipocategoria) REFERENCES tipo_categoria(id)
 );
 
-CREATE TABLE IF NOT EXISTS autenticacao(
+CREATE TABLE IF NOT EXISTS autenticacao (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS codigo_verificacao (
+   id serial,
+   email varchar(100) NOT NULL,
+   codigo varchar(10) NOT NULL
 );
