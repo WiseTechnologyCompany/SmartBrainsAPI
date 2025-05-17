@@ -1,4 +1,4 @@
-package br.com.wisefinances.smartbrains.model.dto.password;
+package br.com.wisefinances.smartbrains.model.dto.codigo;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

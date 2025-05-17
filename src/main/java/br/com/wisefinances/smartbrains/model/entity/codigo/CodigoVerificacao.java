@@ -1,4 +1,4 @@
-package br.com.wisefinances.smartbrains.model.entity.password;
+package br.com.wisefinances.smartbrains.model.entity.codigo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

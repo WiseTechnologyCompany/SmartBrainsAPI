@@ -1,7 +1,7 @@
-package br.com.wisefinances.smartbrains.controller.password;
+package br.com.wisefinances.smartbrains.controller.codigo;
 
 import br.com.wisefinances.smartbrains.model.dto.usuario.UserEmailDTO;
-import br.com.wisefinances.smartbrains.service.password.CodigoVerificacaoService;
+import br.com.wisefinances.smartbrains.service.codigo.CodigoVerificacaoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

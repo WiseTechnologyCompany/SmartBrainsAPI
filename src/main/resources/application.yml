@@ -12,6 +12,18 @@ spring:
     enabled: true
     baseline-on-migrate: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 server:
   port: 8080
 
@@ -26,13 +38,11 @@ server:
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
 
-
 smartbrains:
   api:
     security:
       jwt:
         secret: ${SECRET:$2a$10$2hB468bxn$!RijQnluF5kcuJzwO&HaJvtxfsQKueGns%XbZ13kKw4hG2x$iKx9vY#p4Ts}
-
 
 springdoc:
   swagger-ui:
