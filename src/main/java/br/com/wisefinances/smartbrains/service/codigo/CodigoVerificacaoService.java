@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
@@ -43,11 +42,22 @@ public class CodigoVerificacaoService {
         }
     }
 
-    public void saveVerificationCode(String pEmail) {
+    public void saveAndSendVerificationCode(String pEmail) {
         var verificationCode = createVerificationCode(pEmail);
         var verificationCodeToSave = modelMapper.map(verificationCode, CodigoVerificacao.class);
         codigoVerificacaoRepository.save(verificationCodeToSave);
-        emailService.sendEmail(pEmail, verificationCode.getCodigo());
+        sendEmailToUser(pEmail, verificationCode.getCodigo());
+    }
+
+    public Boolean checkVerificationCodeAndEmail(CodigoVerificacaoDTO pVerificationCodeDTO) {
+        var lastVerificationCode = codigoVerificacaoRepository.checkVerificationEmailAndCode(pVerificationCodeDTO.getEmail());
+
+        return lastVerificationCode.getFirst().getEmail().equalsIgnoreCase(pVerificationCodeDTO.getEmail()) &&
+                lastVerificationCode.getFirst().getCodigo().equalsIgnoreCase(pVerificationCodeDTO.getCodigo());
+    }
+
+    private void sendEmailToUser(String pEmail, String pVerificationCode) {
+        emailService.sendEmail(pEmail, pVerificationCode);
     }
 
     private CodigoVerificacaoDTO createVerificationCode(String pEmail) {

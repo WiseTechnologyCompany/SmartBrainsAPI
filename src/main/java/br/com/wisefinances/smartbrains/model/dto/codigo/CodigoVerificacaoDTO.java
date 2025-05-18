@@ -13,8 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CodigoVerificacaoDTO {
 
-    private Integer id;
-
     @Email
     @NotNull
     private String email;

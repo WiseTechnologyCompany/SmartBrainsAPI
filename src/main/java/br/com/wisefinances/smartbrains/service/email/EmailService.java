@@ -29,11 +29,11 @@ public class EmailService {
         try {
             String userName = getUserName(pUserEmail);
             MimeMessage message = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setFrom(from);
-            helper.setTo(pUserEmail);
-            helper.setSubject("Código de Verificação");
+            mimeMessageHelper.setFrom(from);
+            mimeMessageHelper.setTo(pUserEmail);
+            mimeMessageHelper.setSubject("Código de Verificação");
 
             String htmlContent = "<html>" +
                     "<body style=\"font-family: Arial, sans-serif; text-align: center; padding: 40px; background-color: #f8f9fa;\">" +
@@ -56,7 +56,7 @@ public class EmailService {
                     "</div>" +
                     "</body></html>";
 
-            helper.setText(htmlContent, true);
+            mimeMessageHelper.setText(htmlContent, true);
 
             javaMailSender.send(message);
         } catch (Exception ex) {
