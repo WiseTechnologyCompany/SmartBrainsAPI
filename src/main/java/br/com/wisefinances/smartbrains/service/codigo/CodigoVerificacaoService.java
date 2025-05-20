@@ -49,7 +49,7 @@ public class CodigoVerificacaoService {
         sendEmailToUser(pEmail, verificationCode.getCodigo());
     }
 
-    public Boolean checkVerificationCodeAndEmail(CodigoVerificacaoDTO pVerificationCodeDTO) {
+    public Boolean checkEmailAndVerificationCode(CodigoVerificacaoDTO pVerificationCodeDTO) {
         var lastVerificationCode = codigoVerificacaoRepository.checkVerificationEmailAndCode(pVerificationCodeDTO.getEmail());
 
         return lastVerificationCode.getFirst().getEmail().equalsIgnoreCase(pVerificationCodeDTO.getEmail()) &&

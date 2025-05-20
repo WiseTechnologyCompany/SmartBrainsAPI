@@ -3,6 +3,7 @@ package br.com.wisefinances.smartbrains.service;
 import br.com.wisefinances.smartbrains.domain.abstracts.AbstractSpecificService;
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.enums.SituacaoCadastro;
+import br.com.wisefinances.smartbrains.infra.security.model.dto.AutenticacaoDTO;
 import br.com.wisefinances.smartbrains.infra.security.service.AutenticacaoService;
 import br.com.wisefinances.smartbrains.model.dto.usuario.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioDTO;
@@ -71,6 +72,10 @@ public class UsuarioService extends AbstractSpecificService<UsuarioDTO, CreateUs
 
         BeanUtils.copyProperties(pCreateUsuarioDTO, usuario, "id");
         return new CreateUsuarioDTO(createUsuarioRepository.save(usuario));
+    }
+
+    public void updateUserPassword(AutenticacaoDTO pAutenticacaoDTO) {
+        autenticacaoService.updateAuthenticationPassword(pAutenticacaoDTO);
     }
 
     @Override

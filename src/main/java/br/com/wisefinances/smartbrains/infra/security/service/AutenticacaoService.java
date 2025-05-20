@@ -59,6 +59,11 @@ public class AutenticacaoService implements UserDetailsService {
         autenticacaoRepository.updateEmail(pNewEmail, pOldEmail);
     }
 
+    public void updateAuthenticationPassword(AutenticacaoDTO pAutenticacaoDTO) {
+        var encryptedPassword = passwordEncoder.encode(pAutenticacaoDTO.getPassword());
+        autenticacaoRepository.updatePassword(encryptedPassword, pAutenticacaoDTO.getEmail());
+    }
+
     private void validateAuthentication(AutenticacaoDTO autenticacaoDTO) {
         checkEmail(autenticacaoDTO.getEmail());
         encryptPassword(autenticacaoDTO);

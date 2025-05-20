@@ -32,6 +32,6 @@ public class CodigoVerificacaoController {
 
     @PostMapping("/verification")
     public ResponseEntity<Boolean> checkEmailAndVerificationCode(@RequestBody @NotNull CodigoVerificacaoDTO codigoVerificacaoDTO) {
-        return ResponseEntity.ok(codigoVerificacaoService.checkVerificationCodeAndEmail(codigoVerificacaoDTO));
+        return ResponseEntity.ok(codigoVerificacaoService.checkEmailAndVerificationCode(codigoVerificacaoDTO));
     }
 }

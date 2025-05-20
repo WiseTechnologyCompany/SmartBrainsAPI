@@ -19,4 +19,8 @@ public interface AutenticacaoRepository extends JpaRepository<Autenticacao, Inte
     @Query("UPDATE Autenticacao a SET a.email = :newEmail WHERE a.email = :oldEmail")
     void updateEmail(@Param("newEmail") String newEmail, @Param("oldEmail") String oldEmail);
 
+    @Modifying
+    @Query("UPDATE Autenticacao a SET a.password = :newPassword WHERE a.email = :userEmail")
+    void updatePassword(@Param("newPassword") String newPassword, @Param("userEmail") String userEmail);
+
 }

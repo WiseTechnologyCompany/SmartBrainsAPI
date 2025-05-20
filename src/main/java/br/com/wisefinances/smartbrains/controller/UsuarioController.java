@@ -2,10 +2,12 @@ package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.domain.messages.MessagesResponseDTO;
 import br.com.wisefinances.smartbrains.domain.page.PageDTO;
+import br.com.wisefinances.smartbrains.infra.security.model.dto.AutenticacaoDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.CreateUsuarioDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.UsuarioDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.UserEmailDTO;
 import br.com.wisefinances.smartbrains.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -56,5 +58,12 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<MessagesResponseDTO> deleteUsuario(@PathVariable Integer id) {
         return ResponseEntity.ok(usuarioService.delete(id));
+    }
+
+    @Hidden
+    @Transactional
+    @PatchMapping("/password")
+    public void updateUserPassword(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
+        usuarioService.updateUserPassword(autenticacaoDTO);
     }
 }
