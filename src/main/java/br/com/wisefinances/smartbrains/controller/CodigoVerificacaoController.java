@@ -1,4 +1,4 @@
-package br.com.wisefinances.smartbrains.controller.codigo;
+package br.com.wisefinances.smartbrains.controller;
 
 import br.com.wisefinances.smartbrains.model.dto.codigo.CodigoVerificacaoDTO;
 import br.com.wisefinances.smartbrains.model.dto.usuario.UserEmailDTO;

@@ -24,7 +24,7 @@ public class EmailService {
     UsuarioRepository usuarioRepository;
 
     public void sendEmail(String pUserEmail, String pVerificationCode) {
-        log.info("Enviando Código de verificação para o e-mail: {} - {}", pUserEmail, DateUtils.getCurrentDateTimeFormatted());
+        log.info("Enviando Código de Verificação para o e-mail: {} | {}", pUserEmail, DateUtils.getCurrentDateTimeFormatted());
 
         try {
             String userName = getUserName(pUserEmail);
